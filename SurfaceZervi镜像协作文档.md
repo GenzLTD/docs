@@ -97,3 +97,58 @@ tar -czf SurfaceZervi-export-$(date +%Y%m%d).tar.gz \
 - Fossil 历史若在，补全 Wukong 的版本演进记录。
 
 *有任何疑问（目录找不到、体积过大、格式不确定），先拍照/列目录发回来，不必硬传。*
+
+---
+
+## 五、Mac 侧回执（jason，2026-09-04）
+
+> 结论先行：**本任务要找的数据不在 `SurfaceZervi/` 里，而在 `~/Documents/Wukong-Backup/`**（2026-05-18 从原 Wukong U 盘 `/Volumes/Wukong/` 完整镜像到本机）。`SurfaceZervi/Wukong-main` 与 GitHub 快照逐文件一致、无增量；真实资产比预想更全：**`Wukong.fossil`（808MB，含完整提交历史）已被找到**。交付已按下方清单打包至 szpeter 移动 U 盘。
+
+### 1. 任务逐项回复
+
+| 任务 | 结果 |
+|---|---|
+| 1. 定位 SurfaceZervi | `/Users/jason/SurfaceZervi/`，含 `Wukong-main/`（18 项）与 `72changes-main/`；目录树见回执附件 `tree.txt` |
+| 2. db/backups 完整备份 | **`SurfaceZervi/Wukong-main/db/backups/` 仅有 1 个 mysql 视图备份**（`looma_crm_views_backup_20260302_132138.sql`，GitHub 已有）。真实完整备份在 `~/Documents/Wukong-Backup/data/`（见下节） |
+| 3. .fossil 仓库文件 | **找到：`~/Documents/Wukong-Backup/Wukong.fossil` = 808MB**（含完整提交历史）。SurfaceZervi 全程无 `.fossil`，仅 `Wukong-main/.fossil-settings/ignore-glob` 证明其曾为 Fossil checkout |
+| 4. 72changes GitHub 外文件 | **无**：`SurfaceZervi/72changes-main` 与 `GenzLTD/72changes` 逐文件一致（仅 GH 多 `._.DS_Store` 一个垃圾）。无 `md_documents_collected/`、无 `.onnx` 模型 |
+| 5. 打包 | 核心集已打 `Wukong-export-20260904.tar`（sha256 见下），存入 szpeter U 盘 `/Volumes/szpeter/` |
+
+### 2. 真实备份位置与规模（`~/Documents/Wukong-Backup/data/`，合计约 1.8GB）
+
+覆盖 **8 类数据库 + 多轮**（backup_logs 显示备份原输出于旧机 `/Users/szjason72/*_backups/`，已随 U 盘镜像迁入本目录）：
+
+| 类型 | 目录 | 规模 | 轮次 |
+|---|---|---|---|
+| MySQL 全量 | `data/mysql/` | ~530M / 701 文件 | 2026-03-03 多次全量（`all_databases_20260303_*.sql.gz` + 单库） |
+| MySQL | `data/mysql_backups/` | ~25M / 63 文件 | 2026-03-02（与 backup_logs 对应） |
+| MongoDB | `data/mongodb/` | ~304M / 736 文件 | mongodump 目录式 |
+| Neo4j | `data/neo4j/` | ~517M / 107 文件 | 数据目录 |
+| PostgreSQL | `data/postgres/` | ~39M / 973 文件 | + `postgres_backups/` 412K（dump） |
+| SQLite | `data/sqlite_backups/` | ~5.1M / 26 文件 | 2026-03-02 |
+| Docker 混合 | `data/docker_backups/` | ~84M / 7 文件 | + `data/backups/` 115M（03-03 轮 docker/es/h2/memcached/mongo/mysql…） |
+| 迁移 | `data/migration_backups/` | ~126M | |
+| Redis/ES/Weaviate/H2/Memcached | `data/redis|elasticsearch|weaviate|h2|memcached/` | <1M | |
+| 元数据库 | `db/wukong_metadata.db` | 1.0M | **2026-03-17 版（比 GitHub 03-10 版新）** |
+
+> 注：`SurfaceZervi/Wukong-main/db/defaultsqlserver` 是指向 `C:/ServBay/db/mysql` 的死链接（Windows 路径残留），非实际数据。
+
+### 3. 交付包（szpeter U 盘 `/Volumes/szpeter/Wukong-export-20260904.tar`）
+
+包内结构（解压即得 `Wukong-export-20260904/`）：
+```
+Wukong-export-20260904/
+├── Wukong.fossil          # 808MB，完整 Fossil 提交历史
+├── wukong_metadata.db     # 1.0MB，03-17 最新元数据库
+├── data/                  # 1.8GB，8 类多库备份全集
+├── 72changes/             # 子项目源码（与 GitHub 一致，留档）
+└── ASSET-INVENTORY.md     # 资产清单说明
+```
+- 总大小 **2,773,711,872 字节（约 2.58 GiB）**（数据主体已为 .gz/.dump/tar.gz 自带压缩，故未二次 gzip，`backup_analyzer.py` 支持直接解析）
+- sha256：**`a537b56f35691e937ce678b36e72340b88be4106f647d0a569c46a350cf9b466`**（校验文件 `Wukong-export-20260904.tar.sha256` 同目录）
+
+### 4. 给接收方的建议
+
+- `backup_analyzer.py` 扫描 `db/backups/` 的 8 类子目录约定 → 用 `data/` 全量即可覆盖 103 源（MySQL 61/SQLite 25/MongoDB 7/PG 3/Neo4j 1 与元数据库规模吻合）。
+- Fossil 历史在 `Wukong.fossil`，`fossil open` 或 `fossil clone` 本地副本即可还原版本演进。
+- 如需查看 `data/mysql/`（03-03 全量轮）与 `data/mysql_backups/`（03-02 轮）两份差异：后者与 `Wukong-main/db/backup_logs/latest/mysql.log` 逐库对应。
