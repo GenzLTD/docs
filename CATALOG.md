@@ -1,9 +1,17 @@
 # GenzLTDbackup 仓库总索引（CATALOG）
 
-> 生成时间：2026-09-02
-> 扫描范围：`D:/servbay-win-kit/GenzLTDbackup/` 下 34 个 git 仓库
+> 生成时间：2026-09-02 · 更新：2026-09-04
+> 扫描范围：`D:/servbay-win-kit/GenzLTDbackup/` 下 git 仓库（初扫 34 个）
 > 方法：逐仓库提取 remote / 技术栈 / 文件数 + 两两 Jaccard 相似度 + 逐文件 hash 比对（雷同簇）
 > 文件数口径：剔除依赖目录（node_modules / .git / dist / .next 等）与二进制后的有效文件数
+
+### 更新日志（2026-09-04）
+
+1. **GenzLTD 组织全面私有化**：约 18 个公开仓转为私有，组织 30 仓现全部私有。
+2. **新增 3 个源码仓**（backup 补齐）：`Wukong`（认知内核 schema/元数据真源）、`72changes`（Java RAG 历史样本）、`Nazha`（RAG 知识库主线，DemoPeter 演化版）。
+3. **新增 2 个仓**：`wukong-core`（认知内核落地）、`docs`（架构知识库）。
+4. **发现团队 2026-05-28 三线结论**：Wukong / 72changes / Nazha 三者无 git 血缘；Nazha=代码主线、Wukong=schema 参考、72changes=归档。详见「七、Wukong 血缘」。
+5. `looma-zervi` 有更新（9-02 → 9-03）。
 
 ---
 
@@ -11,10 +19,11 @@
 
 | 项 | 数量 |
 |---|---|
-| 仓库总数 | 34 |
-| GitHub 组织 | 2 个：`szpeter2026`（个人，9 仓）+ `GenzLTD`（公司，25 仓） |
+| 仓库总数 | 37（本地 GenzLTDbackup 目录） |
+| GitHub 组织 | 2 个：`szpeter2026`（个人）+ `GenzLTD`（公司，**30 仓，全私有**） |
 | 主线（active） | 4 |
 | 共识网络产品线（需合并） | 4（Iamgeek + kung-fu 三件套） |
+| 认知内核真源 | 2（Wukong + 72changes，只读参考） |
 | 文档 / 实验大杂烩（归档） | 2（Genzltd + zervi.test） |
 | 历史血缘（只读归档） | 24 |
 
@@ -173,13 +182,26 @@ Looma / zervi 产品线：
 
 与 kung-fu / Iamgeek 共识网络的「Layer0 公开人格 / Layer1 兴趣图谱 / Layer2 深度档案」是**同一概念体系**。
 
-### 缺失（原件不在本备份）
+### 源码已找到（2026-09-04 更新）
 
-- Wukong 的 Python 源码（`backup_analyzer.py` 等）
-- 72changes 的 Spring Boot 源码（`.java` / `pom.xml`）
-- data 子项目
+> 原「缺失」结论已过时：`GenzLTD/Wukong`、`GenzLTD/72changes` 两个私有仓库已找到并 clone 到 backup，源码完整（Wukong 多语言 Python+Java+JS；72changes Spring Boot 1069 行）。
 
-> 结论：**只能从「schema 资产 + 文档 + Rust 重实现」重建规格，无法还原可运行源码。**
+### 团队三线结论（2026-05-28，Nazha/docs/lineage/WUKONG_RAG_DECISION.md）
+
+| 角色 | Canonical | 结论 |
+|---|---|---|
+| **Nazha / DemoPeter** | ✅ 代码主线 | Python RAG 知识库，在演进 |
+| **Wukong** | ✅ schema / 元数据参考 | 103 源 · 7799 字段 · Layer0/1/2 |
+| **72changes** | ⏸ 归档参考 | Java Spring AI RAG；zervi.test 集成未落地 |
+
+**关键决策**：
+- **三者无 git 血缘**（纠缠在工作区分工 + 设计吸收，不在版本历史）。
+- **停做**「Wukong + 72changes 双栈并行」；新 RAG 只在 **Nazha/DemoPeter** 开发。
+- **保留只读**：Wukong 的 Layer0 schema 供 YeDall Looma 对照；72changes 作 Java/Spring AI 历史样本。
+- **勿开第四仓**做「Wukong 3.0」，在 Nazha 迭代即可。
+- 另有 `zervi-genzltd`、`SurfaceZervi` 两个组织（Nazha canonical 在 zervi-genzltd；Wukong/72changes 只读快照在 SurfaceZervi）。
+
+> 校准：Wukong 定位为「认知内核 schema 真源」不变（供 wukong-core 对照），但 RAG 代码主线是 Nazha，不是 72changes。
 
 ---
 
