@@ -199,7 +199,7 @@ Looma / zervi 产品线：
 - **停做**「Wukong + 72changes 双栈并行」；新 RAG 只在 **Nazha/DemoPeter** 开发。
 - **保留只读**：Wukong 的 Layer0 schema 供 YeDall Looma 对照；72changes 作 Java/Spring AI 历史样本。
 - **勿开第四仓**做「Wukong 3.0」，在 Nazha 迭代即可。
-- 另有 `zervi-genzltd`、`SurfaceZervi` 两个组织（Nazha canonical 在 zervi-genzltd；Wukong/72changes 只读快照在 SurfaceZervi）。
+- 历史命名（均非活跃 GitHub 组织，已查证 Not Found）：`zervi-genzltd` = 5-28 文档里的旧 canonical 组织名，后仓库统一迁至 GenzLTD；`SurfaceZervi` = 本地镜像代号（2026-03 存放 Wukong/72changes 的 Fossil 导出快照）。
 
 > 校准：Wukong 定位为「认知内核 schema 真源」不变（供 wukong-core 对照），但 RAG 代码主线是 Nazha，不是 72changes。
 
