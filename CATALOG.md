@@ -53,6 +53,7 @@
 |---|---|---|---|---|
 | Genzltd | AI 身份 / 阿里云 / 区块链等上百篇分析报告 + SQL + 目录堆 | 4960 | GenzLTD | 只读归档，非代码库 |
 | zervi.test | zervi 实验场：含 go-zervi 子目录 + 6 套 docker-compose + 数十个 .ps1 脚本 + 报告 | 2492 | GenzLTD | 只读归档，拆出有效子项目 |
+| zervi-test | zervi.test 的 Java 整理迁移版（Spring Cloud 微服务，218 文件 11 服务） | java | — | szpeter2026 | **反面教材**：central-brain 实为网关+服务治理（非智能大脑），WorkflowEngine 假实现（sleep+return true）；仅 `WorkflowStep` 的 cloud+service 二元定位思想可借鉴（呼应决策⑤⑥） |
 
 ---
 
