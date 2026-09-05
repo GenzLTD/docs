@@ -136,6 +136,35 @@ https://github.com/codespaces/new?repo=GenzLTD/Tatha
 | Codespace 创建 API 可用性 | ⚠️ **当前 zervi-genz PAT 缺 `codespace` scope**，需用户去 settings/tokens 加一次 |
 | 与 ADR-0004 部署流水线一致 | ✅ Vercel CLI 已预装在 post-create |
 
+## Update (2026-09-06): 镜像模板教训与 docs 仓落地回写
+
+> **本条以「决策修正」覆盖上文 §1「基础 image：`mcr.microsoft.com/devcontainers/python:3.11-bullseye`（后端类）」指引。**
+> 新仓与 Tatha `70455cb` 模板复查一律以此为准。
+
+### 事故：bullseye 系 devcontainers image 的 Yarn apt 源 key 已失效
+
+`devcontainers/python:3.11-bullseye` 等 devcontainers 全家桶镜像自带 `dl.yarnpkg.com` apt 源，其 GPG key（`NO_PUBKEY 62D54FD4003F6525`）自 2026-09 起无法验证。任何执行 `apt-get update` 的 feature（实测 sshd feature）构建即失败 → **Codespaces 静默降级到 `devcontainers/base:alpine` 空容器**（无 gh / pip / GITHUB_TOKEN 注入 / git identity），表现为 commit/push 认证失败、postCreate 无法完成——docs 仓 codespace 两次构建成 Alpine 即此因。
+
+### 修正后模板原则（后端类仓）
+
+| 维度 | 原指引（bullseye devcontainers image） | 修正（2026-09-06 起） |
+|------|----------------------------------------|------------------------|
+| 基础镜像 | devcontainers 全家桶 image | **官方语言镜像自建 Dockerfile**（后端 `python:3.11-bookworm` 等），不引入第三方 apt 源 |
+| features | 按需堆叠（sshd 等） | **最少化**；系统服务（如 sshd）直接在 Dockerfile `apt-get install` |
+| 用户 | image 内置 `vscode` 用户 | 自建 Dockerfile 需手动建 `vscode` 用户（UID 1000）+ 免密 sudo——Codespaces 以 `containerUser: vscode` 运行，缺用户容器起不来 |
+| git identity | 依赖 platform 注入 | **禁止 post-create 写入无归属 stub email**（产生灰 commit）；回落 system 层注入的创建者身份 |
+
+### docs 仓落地链（`GenzLTD/docs`，2026-09-05~06）
+
+| Commit | 内容 |
+|--------|------|
+| `9b916cf` | docs 引入 devcontainer + ADR-0006（bullseye 起点，后被推翻） |
+| `fcca380` | 改 Dockerfile 方案（官方 `python:3.11-bookworm`，避开 Yarn apt key 失效） |
+| `999fe9e` | Dockerfile 建 `vscode` 用户 + 免密 sudo |
+| `60880cc` | post-create.sh 移除无归属 identity stub，回落 system 注入身份 |
+
+> 待办：Tatha `70455cb` 等已用 bullseye devcontainers image 的仓，需按上述原则复查并迁移。
+
 ## References
 
 - GitHub Docs: <https://docs.github.com/en/codespaces>
