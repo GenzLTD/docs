@@ -8,9 +8,14 @@ echo "::group::docs post-create (repo=${GENZLTD_REPO:-docs})"
 
 # 1. tooling baseline
 need_cmd() { command -v "$1" >/dev/null 2>&1; }
-for cmd in git gh python3 pip; do
+for cmd in git python3 pip; do
   need_cmd "$cmd" || { echo "missing required: $cmd"; exit 1; }
 done
+# gh is a SOFT dependency: docs preview (mkdocs) does not need it. Warn, don't abort,
+# so postCreateCommand still completes even if the github-cli feature is unavailable.
+if ! need_cmd gh; then
+  echo "warning: 'gh' not found (github-cli feature unavailable). git identity/PR hints skipped."
+fi
 
 # 2. mkdocs preview (only if user wants to render the docs site)
 if ! python3 -c "import mkdocs_material" >/dev/null 2>&1; then
