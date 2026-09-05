@@ -1,4 +1,4 @@
-# ADR 0004: tatha-frontend 线上部署链——真源、Vercel 组织归属与义务边界
+# ADR 0007: tatha-frontend 线上部署链——真源、Vercel 组织归属与义务边界
 
 - **Status**: Proposed
 - **Date**: 2026-09-05

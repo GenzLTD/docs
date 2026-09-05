@@ -38,24 +38,24 @@
 
 ---
 
-## 三、放回我们的实际诉求（ADR 0004 落地路径）
+## 三、放回我们的实际诉求（ADR 0007 落地路径）
 
 我们真正需要的治理量级，**当前 Free 覆盖得住**：
 
 | 我们要做的事 | 免费可做？ |
 |---|---|
 | 提权：给 ci 账号 docs 的 Write | ✅ |
-| 合入 ADR 0004（仓库级 PR / 直推） | ✅ |
+| 合入 ADR 0007（仓库级 PR / 直推） | ✅ |
 | main 的**基本保护**：Require PR + 1 review + 保护 admin | ✅ |
 | **现在**就做 CODEOWNERS 强制、多审批、SAML | ❌ 需 Team（可选，暂非必须） |
 
 ### 建议
-- **短期（Free，零成本）**：完成提权 + docs/main 基础分支保护 + 合入 ADR 0004。
+- **短期（Free，零成本）**：完成提权 + docs/main 基础分支保护 + 合入 ADR 0007。
 - **将来若需要**（成员变多、真源仓要"硬门禁"）：再评估升级 **GitHub Team**，届时优先落地 `required status checks` + `CODEOWNERS` + `限制 main 推送者`。
 
 ---
 
 ## References
 - [GenzLTD/docs 仓库](https://github.com/GenzLTD/docs)
-- [ADR 0004 草案](0004-tatha-frontend-vercel-deploy-chain.md)（同目录）
+- [ADR 0007 草案](0007-tatha-frontend-deploy-governance.md)（同目录；注：原 PR #1 用 ADR 0004 编号，与 main 已有的 [ADR 0004 部署流水线](0004-tatha-frontend-deployment-pipeline.md) 冲突，已重编号为 0007 治理层）
 - 计划信息：`gh api orgs/GenzLTD` → `plan`
