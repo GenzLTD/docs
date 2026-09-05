@@ -1,0 +1,44 @@
+site_name: GenzLTD Governance Docs
+site_description: ADR / process / catalog for GenzLTD projects
+docs_dir: docs
+theme:
+  name: material
+  features: [navigation.instant, navigation.tracking, toc.follow]
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: indigo
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: indigo
+markdown_extensions:
+  - admonition
+  - attr_list
+  - def_list
+  - footnotes
+  - md_in_html
+  - tables
+  - toc:
+      permalink: true
+  - pymdownx.highlight
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:mermaid2.fence_mermaid_custom
+plugins:
+  - search
+nav:
+  - Home: README.md
+  - 访问与参与指南: 访问与参与指南.md
+  - ADR Index: adrs/README.md
+  - ADR 0001: adrs/0001-lab-wukong-canonical.md
+  - ADR 0002: adrs/0002-l0-pii-sg-deny-policy.md
+  - ADR 0003: adrs/0003-cortex-policy-bundle-pin.md
+  - ADR 0004: adrs/0004-tatha-frontend-deployment-pipeline.md
+  - ADR 0005: adrs/0005-remote-codespace-development.md
+  - ADR 0006: adrs/0006-docs-governance-codespace.md
+  - ADR 0007: adrs/0007-tatha-frontend-deploy-governance.md
+  - 执行计划: ADR001-004落地执行计划.md
+  - 架构设计: 新一代智能大脑架构设计.md
+  - 路线图: 新一代智能大脑-落地路线图.md

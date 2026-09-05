@@ -44,7 +44,7 @@ if [[ ! -f "${REPO_ROOT}/mkdocs.yml" ]]; then
   cat > "${REPO_ROOT}/mkdocs.yml" <<'YAML'
 site_name: GenzLTD Governance Docs
 site_description: ADR / process / catalog for GenzLTD projects
-docs_dir: .
+docs_dir: docs
 theme:
   name: material
   features: [navigation.instant, navigation.tracking, toc.follow]
