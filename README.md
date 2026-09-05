@@ -26,6 +26,9 @@
 | [新一代智能大脑架构设计.md](新一代智能大脑架构设计.md) | 八大设计决策 + 业界参考 + 与 DeepSeek Harness 差异化 | v0.2 研讨稿 |
 | [新一代智能大脑-落地路线图.md](新一代智能大脑-落地路线图.md) | M0–M6 里程碑 + 验收标准 | v0.1 |
 | [CATALOG.md](CATALOG.md) | 34 仓库血缘总索引（含 Wukong 隐藏主线） | 持续更新 |
+| [Wukong-lab-Schema同步对接规范.md](Wukong-lab-Schema同步对接规范.md) | Wukong(真源)→lab 的 Layer0/1/2 schema 同步规范 + promote 流程 + 脚本 | 可执行 |
+| [Wukong-命名与归属对账表.md](Wukong-命名与归属对账表.md) | Wukong vs wukong-core vs lab 命名与归属对账（供 owner 拍板） | 待拍板 |
+| [72changes-Nazha语料盘点与决策.md](72changes-Nazha语料盘点与决策.md) | 72changes 与 RAG 主线 Nazha 差异盘点 + 复用/归档决策清单 | 待拍板 |
 
 ## 关联代码仓库
 
