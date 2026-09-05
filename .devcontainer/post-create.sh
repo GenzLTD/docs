@@ -97,11 +97,20 @@ for f in adrs/*.md; do
   fi
 done
 
-# 5. ensure git identity hint (Codespace git config may be empty)
+# 5. git identity: never write an unowned stub email. Codespaces injects the
+#    creator identity at the SYSTEM level (/etc/gitconfig). Overriding it with a
+#    fake user-level identity (e.g. codespace@users.noreply.github.com) produces
+#    grey, unattributed commits on GitHub. Leave the global level empty so git
+#    falls back to the injected system identity; only warn if none exists.
 if ! git config --global user.email >/dev/null 2>&1; then
-  git config --global user.email "codespace@users.noreply.github.com"
-  git config --global user.name  "GenzLTD Codespace"
-  echo "git identity stub configured (override with gh auth login)"
+  if git config --system user.email >/dev/null 2>&1; then
+    echo "git user.email unset at --global level; using injected system identity:"
+    echo "  $(git config --system user.name 2>/dev/null) <$(git config --system user.email)>"
+  else
+    echo "warning: no git user.email anywhere (global or system). Set it explicitly:"
+    echo "  git config --global user.name 'Your Name'"
+    echo "  git config --global user.email 'you@example.com'"
+  fi
 fi
 
 echo "::endgroup::"
