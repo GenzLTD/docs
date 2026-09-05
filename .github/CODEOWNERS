@@ -1,0 +1,12 @@
+# GenzLTD/docs CODEOWNERS
+# 治理：/adrs/ 由 ADR 起草主线 szjason72 + xiajason 负责 review；
+#       其他文档由 Owner 群兜底。
+# 自动派 reviewer 由 GitHub Branch Protection 的
+# `require_code_owner_reviews=true` 触发。
+
+# ADR 目录——核心治理文档，必须经 ADR 起草主线 review
+/adrs/  @szjason72 @xiajason
+
+# 其余文档——Owner 群兜底（兜底层避免僵局）
+/*.md    @zervi-genz @szpeter2026
+/.github/ @zervi-genz @szpeter2026
