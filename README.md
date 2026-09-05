@@ -2,6 +2,23 @@
 
 > 团队架构设计的单一真源（single source of truth），供全体成员研讨、评审、追溯演进。
 
+## 评审流程（Review Process）
+
+任何 PR 合并前，**必须**取得以下 CODEOWNER 之一的 review approval：
+
+| 改动路径 | 必审人（CODEOWNER） | 兜底人 |
+|---|---|---|
+| `adrs/`（ADR 文档） | `@szjason72` 或 `@xiajason` | `@zervi-genz`、`@szpeter2026` |
+| `*.md`（其他文档） | `@zervi-genz` 或 `@szpeter2026` | — |
+| `.github/`（治理配置） | `@zervi-genz` 或 `@szpeter2026` | — |
+
+执行细则：
+
+1. 作者**不能**自己 approve 自己的 PR。
+2. 改动落在多个路径时，**每条**路径上的 CODEOWNER 都要 review。
+3. CODEOWNERS 配置见 [`.github/CODEOWNERS`](.github/CODEOWNERS)。
+4. **过渡说明** —— GenzLTD 当前为 Free plan，GitHub 不允许在私有仓强制 `require_code_owner_reviews`。升级到 Pro 或将本仓转 public 后，本节规则将由 GitHub 自动强制执行。在过渡期内，请每位 Maintainer **自觉遵守**上述评审流程；如发现未走评审的直推，请评论提醒或 revert。
+
 ## 文档索引
 
 | 文档 | 内容 | 状态 |
