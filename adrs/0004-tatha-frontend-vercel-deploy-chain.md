@@ -26,6 +26,24 @@
 
 4. **根因**：Vercel CLI 部署只校验「执行命令的账号对该 project 的权限」，**不校验 / 不区分 GitHub 仓库所有者**。因此 `xiajason`（或其他任何账号）的 GitHub 公开仓 owner 不一致**不影响发布**——发的是什么 = 本地产物，而不是 GitHub 上的某个 commit。
 
+### 实操补充（2026-09-05 下午，szjason72）
+
+成员侧已将本地开发入口切到 **canonical** `GenzLTD/tatha-frontend@a019b6a`，并按本 ADR「Allowed：staging / preview」拉起**个人预览站**（非生产 Authority）：
+
+| 项 | 结果 |
+|----|------|
+| 本地路径 | `D:\surface-zervi\GitHub\szjason72\tatha-frontend`，`origin` → `GenzLTD/tatha-frontend` |
+| 成员预览 URL | https://tatha-frontend-org.vercel.app （Vercel 账户 `szjason72-9160` / 项目 `tatha-frontend-org`） |
+| 内容 | 含 `compliance.html` / `config.js` 等完整版；**不是** `C:\tmp` 早期 4 文件壳 |
+| 临时副本 | `C:\tmp\tatha-frontend` 仍指向个人仓，应忽略或删除 |
+
+**踩坑（建议写进成员 runbook）：**
+
+1. 个人旧项目 `tatha-frontend` 在 CLI 部署带上 `GenzLTD` 私有仓 Git 元数据后，多次进入 **`readyState=BLOCKED`**（构建事件为空）；换**新 preview 项目** + `vercel deploy --prod --yes --archive=tgz` 后才 `READY`。
+2. Hobby 新建项目默认 **SSO Deployment Protection**（`all_except_custom_domains`）→ 未登录同事只能看到 Vercel 登录页；分享前需 `vercel project protection disable <project> --sso`。
+3. **切 Cursor workspace ≠ 完成生产部署链**：开发真源已对齐 org；生产 Git 集成 / 域名 Authority / 归档个人仓仍在下方 checklist，须 Admin。
+4. 仓内交接文：`GenzLTD/tatha-frontend` → `docs/vercel-deploy-notes.md`、`docs/compliance-handover.md`（预览 URL 与 `SERVER_REGION` 阻断项）。
+
 ### 待决问题
 
 1. 哪个仓库是「线上真源」（唯一 canonical）？
@@ -81,16 +99,20 @@
 ## Implementation checklist
 
 - [ ] Accept ADR-0004
-- [ ] Vercel：将 `tatha-frontend` project 改为 Git 集成绑定 `GenzLTD/tatha-frontend`，监听 main/prod
+- [ ] Vercel：将**生产** `tatha-frontend` project 改为 Git 集成绑定 `GenzLTD/tatha-frontend`，监听 main/prod（勿把个人 preview `tatha-frontend-org` 误当生产）
 - [ ] 收敛客户端：回收成员对生产 project 的 CLI 部署权，仅保留 dev/preview
-- [ ] 归档/删除 `xiajason/tatha-frontend`、`szjason72/tatha-frontend`（改只读镜像或交接至 org）
-- [ ] `docs` 登记「域名 ↔ Vercel project ↔ canonical 仓库 ↔ 义务人」映射表
-- [ ] 做一次基线对账：记录线上 `api.genz.ltd` 前端/后端对应的 git SHA
+- [x] 成员预览先例：`szjason72-9160/tatha-frontend-org` → https://tatha-frontend-org.vercel.app（对齐 `a019b6a`；符合 §3 Allowed）
+- [ ] 归档/删除 `xiajason/tatha-frontend`、`szjason72/tatha-frontend`（改只读镜像或交接至 org）；本地勿再依赖 `C:\tmp\tatha-frontend`
+- [ ] `docs` 登记「域名 ↔ Vercel project ↔ canonical 仓库 ↔ 义务人」映射表（预览站可另列一行，标明非生产）
+- [ ] 做一次基线对账：记录线上生产前端域名 + `api.genz.ltd` 后端对应的 git SHA
 - [ ] 补 CI/Release：canonical 仓加 `genz-gate` 类部署 workflow（复用 ADR 0003 思路）
+- [ ] `config.js` 的 `SERVER_REGION` 由掌握后端部署区域者定案后经 PR 合入（当前预览站仍为评估模式）
 
 ## Links
 
 - [GenzLTD/tatha-frontend](https://github.com/GenzLTD/tatha-frontend)
+- [成员预览站 tatha-frontend-org](https://tatha-frontend-org.vercel.app)
+- 仓内 runbook：`docs/vercel-deploy-notes.md`（随 canonical 仓发布）
 - [GenzLTD/Tatha（后端）](https://github.com/GenzLTD/Tatha)
 - [docs/CATALOG.md](../CATALOG.md)（组织仓库清单）
 - [ADR 0001](0001-lab-wukong-canonical.md)
