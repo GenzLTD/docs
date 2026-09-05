@@ -57,11 +57,13 @@ plugins:
 nav:
   - Home: README.md
   - ADR Index: adrs/README.md
-  - ADR 0001: adrs/0001-private-knowledge-base.md
-  - ADR 0002: adrs/0002-business-data-redaction.md
-  - ADR 0003: adrs/0003-frontend-monorepo.md
+  - ADR 0001: adrs/0001-lab-wukong-canonical.md
+  - ADR 0002: adrs/0002-l0-pii-sg-deny-policy.md
+  - ADR 0003: adrs/0003-cortex-policy-bundle-pin.md
   - ADR 0004: adrs/0004-tatha-frontend-deployment-pipeline.md
   - ADR 0005: adrs/0005-remote-codespace-development.md
+  - ADR 0006: adrs/0006-docs-governance-codespace.md
+  - ADR 0007: adrs/0007-tatha-frontend-deploy-governance.md
   - 执行计划: ADR001-004落地执行计划.md
   - 架构设计: 新一代智能大脑架构设计.md
   - 路线图: 新一代智能大脑-落地路线图.md
