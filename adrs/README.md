@@ -16,6 +16,8 @@ GenzLTD 架构决策记录。格式参考 [Michael Nygard ADR](https://cognitect
 | [0001](0001-lab-wukong-canonical.md) | lab-genz-brain-m2 与 wukong-core  canonical 关系 | Proposed |
 | [0002](0002-l0-pii-sg-deny-policy.md) | L0_PII ↔ SG 四向 deny 业务口径 | Proposed |
 | [0003](0003-cortex-policy-bundle-pin.md) | cortex-mcp 策略包加载与 pin | Proposed |
+| [0004](0004-tatha-frontend-vercel-deploy-chain.md) | tatha-frontend 线上部署链：真源、Vercel 组织归属与义务边界 | Proposed |
+| [治理清单](free-plan-governance-notes.md) | GenzLTD GitHub Free 计划：治理能力清单（免费 vs 付费增强） | 参考 |
 
 ## 与 M 路线图
 
