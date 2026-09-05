@@ -17,6 +17,7 @@ GenzLTD 架构决策记录。格式参考 [Michael Nygard ADR](https://cognitect
 | [0002](0002-l0-pii-sg-deny-policy.md) | L0_PII ↔ SG 四向 deny 业务口径 | Proposed |
 | [0003](0003-cortex-policy-bundle-pin.md) | cortex-mcp 策略包加载与 pin | Proposed |
 | [0004](0004-tatha-frontend-deployment-pipeline.md) | tatha-frontend 部署流水线（私有主仓 + Vercel REST API） | Accepted |
+| [0005](0005-remote-codespace-development.md) | 远程开发模式（GitHub Codespaces + devcontainer） | Accepted |
 
 ## 与 M 路线图
 
