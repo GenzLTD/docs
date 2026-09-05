@@ -27,9 +27,13 @@ if ! need_cmd gh; then
 fi
 
 # 2. mkdocs preview (only if user wants to render the docs site)
+# sudo when available (custom Dockerfile images ship passwordless sudo), so pip
+# can write to the system site-packages owned by root.
+SUDO=""
+if need_cmd sudo; then SUDO="sudo"; fi
 if ! python3 -c "import mkdocs_material" >/dev/null 2>&1; then
   echo "installing mkdocs-material..."
-  $PIP install --quiet --disable-pip-version-check \
+  $SUDO $PIP install --quiet --disable-pip-version-check \
     "mkdocs-material>=9.5" \
     "mkdocs-mermaid2-plugin>=1.1" \
     "pymdown-extensions>=10.7"
