@@ -19,6 +19,10 @@ GenzLTD 架构决策记录。格式参考 [Michael Nygard ADR](https://cognitect
 | [0004](0004-tatha-frontend-deployment-pipeline.md) | tatha-frontend 部署流水线（私有主仓 + Vercel REST API） | Accepted |
 | [0005](0005-remote-codespace-development.md) | 远程开发模式（GitHub Codespaces + devcontainer） | Accepted |
 | [0006](0006-docs-governance-codespace.md) | docs 仓启用 Codespace（治理协同） | Accepted |
+| [0007](0007-tatha-frontend-deploy-governance.md) | tatha-frontend 部署链治理（真源、Vercel 组织归属、成员边界、追溯义务） | Proposed |
+| [治理清单](free-plan-governance-notes.md) | GenzLTD GitHub Free 计划：治理能力清单（免费 vs 付费增强） | 参考 |
+
+> **编号说明**：原 PR #1（`ai-draft/adr-0004`）与 main 已有的 ADR-0004 部署流水线冲突，本修复版将 PR 提交内容**重编号为 ADR 0007**（治理层），与 ADR 0004（实现层）形成 What/How 互补。
 
 ## 与 M 路线图
 
@@ -29,3 +33,6 @@ GenzLTD 架构决策记录。格式参考 [Michael Nygard ADR](https://cognitect
 ## Links
 
 - tatha-frontend 部署流水线：[ADR-0004](0004-tatha-frontend-deployment-pipeline.md) → workflow 模板位于 `GenzLTD/tatha-frontend/.github/workflows/deploy.yml`
+- tatha-frontend 部署链治理：[ADR-0007](0007-tatha-frontend-deploy-governance.md) → 真源单一化、Vercel 组织归属、成员发布边界
+- 远程 Codespace：[ADR-0005](0005-remote-codespace-development.md) → devcontainer 模板位于 `GenzLTD/Tatha/.devcontainer/`
+- docs 仓 Codespace：[ADR-0006](0006-docs-governance-codespace.md) → devcontainer 模板位于 `GenzLTD/docs/.devcontainer/`
