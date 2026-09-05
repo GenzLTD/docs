@@ -1,5 +1,8 @@
 {
     "yaml.customTags": [
         "tag:yaml.org,2002:python/name:mermaid2.fence_mermaid_custom"
+    ],
+    "markdownlint.ignore": [
+        ".github/CODEOWNERS"
     ]
 }
