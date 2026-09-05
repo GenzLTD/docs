@@ -8,9 +8,18 @@ echo "::group::docs post-create (repo=${GENZLTD_REPO:-docs})"
 
 # 1. tooling baseline
 need_cmd() { command -v "$1" >/dev/null 2>&1; }
-for cmd in git python3 pip; do
+for cmd in git python3; do
   need_cmd "$cmd" || { echo "missing required: $cmd"; exit 1; }
 done
+# pip may be exposed as `pip` or only via `python3 -m pip`; derive a working invocation.
+if need_cmd pip; then
+  PIP="pip"
+elif python3 -m pip --version >/dev/null 2>&1; then
+  PIP="python3 -m pip"
+else
+  echo "missing required: pip (tried bare 'pip' and 'python3 -m pip')"
+  exit 1
+fi
 # gh is a SOFT dependency: docs preview (mkdocs) does not need it. Warn, don't abort,
 # so postCreateCommand still completes even if the github-cli feature is unavailable.
 if ! need_cmd gh; then
@@ -20,7 +29,7 @@ fi
 # 2. mkdocs preview (only if user wants to render the docs site)
 if ! python3 -c "import mkdocs_material" >/dev/null 2>&1; then
   echo "installing mkdocs-material..."
-  pip install --quiet --disable-pip-version-check \
+  $PIP install --quiet --disable-pip-version-check \
     "mkdocs-material>=9.5" \
     "mkdocs-mermaid2-plugin>=1.1" \
     "pymdown-extensions>=10.7"
