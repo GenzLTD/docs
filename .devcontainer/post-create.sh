@@ -40,6 +40,8 @@ if ! python3 -c "import mkdocs_material" >/dev/null 2>&1; then
 fi
 
 # 3. mkdocs scaffold (only if absent)
+# mkdocs.yml is tracked in-repo since df4b8c4 (ADR-0008 context). This scaffold
+# only boots legacy checkouts that predate the committed config.
 if [[ ! -f "${REPO_ROOT}/mkdocs.yml" ]]; then
   cat > "${REPO_ROOT}/mkdocs.yml" <<'YAML'
 site_name: GenzLTD Governance Docs
