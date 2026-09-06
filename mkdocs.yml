@@ -40,7 +40,14 @@ nav:
   - ADR 0006: adrs/0006-docs-governance-codespace.md
   - ADR 0007: adrs/0007-tatha-frontend-deploy-governance.md
   - ADR 0008: adrs/0008-docs-single-source-site.md
+  - 治理清单: adrs/free-plan-governance-notes.md
   - 执行计划: ADR001-004落地执行计划.md
   - 架构设计: 新一代智能大脑架构设计.md
   - 路线图: 新一代智能大脑-落地路线图.md
   - 环境一致性说明: 环境一致性说明.md
+  - CATALOG: CATALOG.md
+  - M2归属对账与决策清单: M2归属对账与决策清单.md
+  - 72changes-Nazha语料盘点与决策: 72changes-Nazha语料盘点与决策.md
+  - SurfaceZervi镜像协作文档: SurfaceZervi镜像协作文档.md
+  - Wukong-lab Schema同步对接规范: Wukong-lab-Schema同步对接规范.md
+  - Wukong命名与归属对账表: Wukong-命名与归属对账表.md
