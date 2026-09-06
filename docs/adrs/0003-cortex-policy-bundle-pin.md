@@ -1,8 +1,8 @@
 # ADR 0003: cortex-mcp 策略包加载、pin 与 genz-gate CI
 
-- **Status**: Proposed
+- **Status**: Accepted
 - **Date**: 2026-09-05
-- **Deciders**: szpeter2026, zervi-genz（待 Accept）
+- **Deciders**: szpeter2026, zervi-genz（Accepted 2026-09-06）
 - **Consulted**: szjason72, cortex-mcp 维护者
 - **Tags**: M3, cortex-mcp, compliance, CI, policy
 
@@ -58,7 +58,7 @@
 
 ## Implementation checklist
 
-- [ ] Accept ADR-0001、0002、0003
+- [x] Accept ADR-0001、0002、0003
 - [ ] 将 `genz-gate.yml` 复制到三仓 `.github/workflows/`（或 lab 为 canonical 副本，他仓 symlink/reuse）
 - [ ] org secret：`GENZ_GATE_PAT`（read org private repos）
 - [ ] wukong-core：`gate.py` 读 yaml，删除长期硬编码 RULES

@@ -1,8 +1,8 @@
 # ADR 0002: L0_PII 与 SG 四向跨境 verdict（deny vs redact）
 
-- **Status**: Proposed
+- **Status**: Accepted
 - **Date**: 2026-09-05
-- **Deciders**: szpeter2026, zervi-genz（待 Accept）
+- **Deciders**: szpeter2026, zervi-genz（Accepted 2026-09-06，选择 A）
 - **Consulted**: 法务/合规顾问（如有）、YeDall/zervi-looma 维护者
 - **Tags**: M2, L0_PII, SG, PDPA, policy, compliance
 
@@ -21,12 +21,10 @@
 
 ## Decision
 
-在 org owner **明确书面确认前**，采用以下 **工程默认**（Proposed → 建议 Accept）：
+经 org owner 于 2026-09-06 书面确认，采用以下最终口径：
 
 1. **工程 canonical**（CI、fixture、cortex 拦截）以 **v1.1 + 64 矩阵** 为准：L0_PII↔SG 四向 = **`deny_plaintext`**。
-2. **业务复核**由 org owner 在 Accept 本 ADR 时二选一：  
-   - **A. Accept deny** — 确认 PDPA/产品口径支持 deny，ADR 转 Accepted，无需改矩阵。  
-   - **B. Supersede 为 redact** — 新开 ADR-0004，同步改 yaml、Rust、fixture、三仓 CI，重算 64 分布。
+2. **业务复核结果：选择 A. Accept deny** — 确认继续使用 `deny_plaintext`，无需改矩阵；如未来改为 `redact`，必须新开 ADR 并同步更新 yaml、Rust、fixture 和三仓 CI。
 3. **cortex-mcp** `remember` 对 `deny_plaintext` **硬拒绝**；对 `redact_or_aggregate` 要求 `metadata.redacted=true`（已实现，与本 ADR 一致）。
 4. **文档**：对外（Tatha/用户）展示 deny 原因时，使用规则中的 `reason` 字符串，不暴露内部 tier 枚举。
 
@@ -43,7 +41,7 @@
 
 ### Risks
 
-- 未经法务确认的 deny 可能在某些场景过严 → **Accept 前需 owner 勾选 A 或 B**。
+- deny 口径在部分场景可能较严格；后续如业务或法务要求放宽，必须通过新 ADR 变更，不得直接修改运行时规则。
 
 ## Verification
 
@@ -57,4 +55,4 @@
 - [policy_rules.yaml v1.1](https://github.com/GenzLTD/wukong-core/blob/main/rules/policy_rules.yaml)
 - Related: [ADR 0001](0001-lab-wukong-canonical.md)
 - Supersedes: （无）
-- Superseded by: （待定：若选 redact 则 ADR-0004）
+- Superseded by: （无）

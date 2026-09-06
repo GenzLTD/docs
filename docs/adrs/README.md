@@ -11,16 +11,17 @@ GenzLTD 架构决策记录。格式参考 [Michael Nygard ADR](https://cognitect
 
 ## 索引
 
-| ADR | 标题 | 状态 |
-|-----|------|------|
-| [0001](0001-lab-wukong-canonical.md) | lab-genz-brain-m2 与 wukong-core  canonical 关系 | Proposed |
-| [0002](0002-l0-pii-sg-deny-policy.md) | L0_PII ↔ SG 四向 deny 业务口径 | Proposed |
-| [0003](0003-cortex-policy-bundle-pin.md) | cortex-mcp 策略包加载与 pin | Proposed |
-| [0004](0004-tatha-frontend-deployment-pipeline.md) | tatha-frontend 部署流水线（私有主仓 + Vercel REST API） | Accepted |
-| [0005](0005-remote-codespace-development.md) | 远程开发模式（GitHub Codespaces + devcontainer） | Accepted |
-| [0006](0006-docs-governance-codespace.md) | docs 仓启用 Codespace（治理协同） | Accepted |
-| [0007](0007-tatha-frontend-deploy-governance.md) | tatha-frontend 部署链治理（真源、Vercel 组织归属、成员边界、追溯义务） | Proposed |
-| [治理清单](free-plan-governance-notes.md) | GenzLTD GitHub Free 计划：治理能力清单（免费 vs 付费增强） | 参考 |
+| ADR                                                | 标题                                                                   | 状态     |
+| -------------------------------------------------- | ---------------------------------------------------------------------- | -------- |
+| [0001](0001-lab-wukong-canonical.md)               | lab-genz-brain-m2 与 wukong-core  canonical 关系                       | Accepted |
+| [0002](0002-l0-pii-sg-deny-policy.md)              | L0_PII ↔ SG 四向 deny 业务口径                                         | Accepted |
+| [0003](0003-cortex-policy-bundle-pin.md)           | cortex-mcp 策略包加载与 pin                                            | Accepted |
+| [0004](0004-tatha-frontend-deployment-pipeline.md) | tatha-frontend 部署流水线（私有主仓 + Vercel REST API）                | Accepted |
+| [0005](0005-remote-codespace-development.md)       | 远程开发模式（GitHub Codespaces + devcontainer）                       | Accepted |
+| [0006](0006-docs-governance-codespace.md)          | docs 仓启用 Codespace（治理协同）                                      | Accepted |
+| [0007](0007-tatha-frontend-deploy-governance.md)   | tatha-frontend 部署链治理（真源、Vercel 组织归属、成员边界、追溯义务） | Accepted |
+| [0008](0008-docs-single-source-site.md)            | docs 仓文档单真源化（根 ↔ `docs/` 双份收敛到 `docs/`）                 | Accepted |
+| [治理清单](free-plan-governance-notes.md)          | GenzLTD GitHub Free 计划：治理能力清单（免费 vs 付费增强）             | 参考     |
 
 > **编号说明**：原 PR #1（`ai-draft/adr-0004`）与 main 已有的 ADR-0004 部署流水线冲突，本修复版将 PR 提交内容**重编号为 ADR 0007**（治理层），与 ADR 0004（实现层）形成 What/How 互补。
 

@@ -17,11 +17,11 @@ M2/M3 阶段需要多人远程协同开发 Tatha / tatha-frontend / cortex-mcp �
 
 GitHub Codespaces 可解决上述四点，但引入三个问题：
 
-| 风险 | 触发 |
-|------|------|
-| Free plan 配额（每月 120 core-hours）| 多人长时间挂机易爆 |
-| 启动延迟（首次 60~120 秒）| 紧急调试体验下降 |
-| Org owner 配置耦合 | codespace 计费默认挂在 user 账户上 |
+| 风险                                  | 触发                               |
+| ------------------------------------- | ---------------------------------- |
+| Free plan 配额（每月 120 core-hours） | 多人长时间挂机易爆                 |
+| 启动延迟（首次 60~120 秒）            | 紧急调试体验下降                   |
+| Org owner 配置耦合                    | codespace 计费默认挂在 user 账户上 |
 
 ## Decision
 
@@ -31,13 +31,13 @@ GitHub Codespaces 可解决上述四点，但引入三个问题：
 
 每个核心仓**必须**包含 `.devcontainer/devcontainer.json` + `.devcontainer/post-create.sh`：
 
-| 仓 | 状态 | 用途 |
-|----|------|------|
-| `GenzLTD/Tatha` | ✅ commit `70455cb` 已推 | FastAPI 后端 dev |
-| `GenzLTD/tatha-frontend` | ⏳ TODO | 静态前端 dev |
-| `GenzLTD/cortex-mcp` | ⏳ TODO | MCP 服务 dev |
-| `GenzLTD/wukong-core` | ⏳ TODO | 决策内核 dev |
-| `GenzLTD/lab-genz-brain-m2` | ⏳ TODO | 验收 fixture dev |
+| 仓                          | 状态                    | 用途             |
+| --------------------------- | ----------------------- | ---------------- |
+| `GenzLTD/Tatha`             | ✅ commit `70455cb` 已推 | FastAPI 后端 dev |
+| `GenzLTD/tatha-frontend`    | ⏳ TODO                  | 静态前端 dev     |
+| `GenzLTD/cortex-mcp`        | ⏳ TODO                  | MCP 服务 dev     |
+| `GenzLTD/wukong-core`       | ⏳ TODO                  | 决策内核 dev     |
+| `GenzLTD/lab-genz-brain-m2` | ⏳ TODO                  | 验收 fixture dev |
 
 **devcontainer.json 必须包含**（参考 Tatha commit 70455cb）：
 
@@ -49,11 +49,11 @@ GitHub Codespaces 可解决上述四点，但引入三个问题：
 
 ### 2. Codespace 创建入口
 
-| 路径 | 用途 | 谁来操作 |
-|------|------|----------|
-| **GitHub 网页 UI** | 成员自助创建 | 每个成员本人 |
+| 路径                               | 用途            | 谁来操作                            |
+| ---------------------------------- | --------------- | ----------------------------------- |
+| **GitHub 网页 UI**                 | 成员自助创建    | 每个成员本人                        |
 | **API（`POST /user/codespaces`）** | 自动化/批量创建 | 仅 owner + PAT 含 `codespace` scope |
-| **CLI（`gh codespace create`）** | 本地 CLI 用户 | 需 gh auth + codespace scope |
+| **CLI（`gh codespace create`）**   | 本地 CLI 用户   | 需 gh auth + codespace scope        |
 
 **默认推荐** 网页 UI：
 ```
@@ -63,13 +63,13 @@ https://github.com/codespaces/new?repo=GenzLTD/Tatha
 
 ### 3. 计费策略
 
-| 维度 | 决策 |
-|------|------|
-| **账单人** | zervi-genz 个人账户（120 core-hours/月免费层） |
-| **谁启用** | 仅 zervi-genz 可创建 codespace（PAT scope 控制） |
-| **成员范围** | GenzLTD 内部成员；外部人员需先 PR 申请加入 org |
-| **超时** | 30 分钟无操作自动停止；过期策略保留 Vercel 默认 |
-| **告警** | 心度余额 < 20 hours 时 zervi-genz 收 GitHub 邮件 |
+| 维度         | 决策                                             |
+| ------------ | ------------------------------------------------ |
+| **账单人**   | zervi-genz 个人账户（120 core-hours/月免费层）   |
+| **谁启用**   | 仅 zervi-genz 可创建 codespace（PAT scope 控制） |
+| **成员范围** | GenzLTD 内部成员；外部人员需先 PR 申请加入 org   |
+| **超时**     | 30 分钟无操作自动停止；过期策略保留 Vercel 默认  |
+| **告警**     | 心度余额 < 20 hours 时 zervi-genz 收 GitHub 邮件 |
 
 ### 4. 与本地开发的关系
 
@@ -81,21 +81,21 @@ https://github.com/codespaces/new?repo=GenzLTD/Tatha
 
 ### ✅ 收益
 
-| 维度 | before | after |
-|------|--------|-------|
-| 入职耗时 | 30~120 分钟 | 5~10 分钟（点链接即可） |
-| 环境一致 | 完全靠成员自觉 | image + post-create 强制 |
-| 远程准入 | 需 VPN + 内网配置 | 仅 GitHub 认证即可 |
-| 审计 | 难追踪 | codespace 创建/删除有 Actions 日志 |
+| 维度     | before            | after                              |
+| -------- | ----------------- | ---------------------------------- |
+| 入职耗时 | 30~120 分钟       | 5~10 分钟（点链接即可）            |
+| 环境一致 | 完全靠成员自觉    | image + post-create 强制           |
+| 远程准入 | 需 VPN + 内网配置 | 仅 GitHub 认证即可                 |
+| 审计     | 难追踪            | codespace 创建/删除有 Actions 日志 |
 
 ### ⚠️ 风险与缓解
 
-| 风险 | 触发 | 缓解 |
-|------|------|------|
-| **Free plan 配额耗尽** | 多人长时间挂 codespace | 30 分钟空闲超时 + 周报监控用量；超限后临时禁用 codespace |
-| **Codespace 实例被遗忘** | 成员离职 / 切换项目 | GitHub UI 列出全部 codespace（默认 30 天保留） |
-| **Org 升 Pro 后策略变更** | GenzLTD 升 Pro 解锁 branch protection（见今天 ADR-0001~0003 待办） | 决策可逆；迁到 org-level billing 即可 |
-| **devcontainer 漂移** | 各仓各自写一份 | 强制所有核心仓含 `.devcontainer/`，PR review check |
+| 风险                      | 触发                                                               | 缓解                                                     |
+| ------------------------- | ------------------------------------------------------------------ | -------------------------------------------------------- |
+| **Free plan 配额耗尽**    | 多人长时间挂 codespace                                             | 30 分钟空闲超时 + 周报监控用量；超限后临时禁用 codespace |
+| **Codespace 实例被遗忘**  | 成员离职 / 切换项目                                                | GitHub UI 列出全部 codespace（默认 30 天保留）           |
+| **Org 升 Pro 后策略变更** | GenzLTD 升 Pro 解锁 branch protection（见今天 ADR-0001~0003 待办） | 决策可逆；迁到 org-level billing 即可                    |
+| **devcontainer 漂移**     | 各仓各自写一份                                                     | 强制所有核心仓含 `.devcontainer/`，PR review check       |
 
 ### 🛡️ 治理副作用
 
@@ -120,21 +120,50 @@ https://github.com/codespaces/new?repo=GenzLTD/Tatha
 
 ## Implementation
 
-| Commit | 仓 | 说明 |
-|--------|----|------|
-| `70455cb` | `GenzLTD/Tatha` | 引入 `.devcontainer/devcontainer.json` + `.devcontainer/post-create.sh` |
-| TODO | `GenzLTD/tatha-frontend` | 复制模板，按需调整（无 Python 依赖） |
-| TODO | `GenzLTD/cortex-mcp` | 复制模板，端口改为 8001（cortex 默认端口） |
-| 紧随本 ADR | `GenzLTD/docs` | 在 onboarding 区补充「如何创建你的第一个 codespace」 |
+| Commit     | 仓                       | 说明                                                                    |
+| ---------- | ------------------------ | ----------------------------------------------------------------------- |
+| `70455cb`  | `GenzLTD/Tatha`          | 引入 `.devcontainer/devcontainer.json` + `.devcontainer/post-create.sh` |
+| TODO       | `GenzLTD/tatha-frontend` | 复制模板，按需调整（无 Python 依赖）                                    |
+| TODO       | `GenzLTD/cortex-mcp`     | 复制模板，端口改为 8001（cortex 默认端口）                              |
+| 紧随本 ADR | `GenzLTD/docs`           | 在 onboarding 区补充「如何创建你的第一个 codespace」                    |
 
 ## Validation
 
-| 验证项 | 结果 |
-|--------|------|
-| devcontainer.json 字段完整性 | ✅ 通过 Tatha commit 验证 |
-| post-create.sh 幂等 | ✅ 设计上 `if-not-exists` 全分支 |
-| Codespace 创建 API 可用性 | ⚠️ **当前 zervi-genz PAT 缺 `codespace` scope**，需用户去 settings/tokens 加一次 |
-| 与 ADR-0004 部署流水线一致 | ✅ Vercel CLI 已预装在 post-create |
+| 验证项                       | 结果                                                                            |
+| ---------------------------- | ------------------------------------------------------------------------------- |
+| devcontainer.json 字段完整性 | ✅ 通过 Tatha commit 验证                                                        |
+| post-create.sh 幂等          | ✅ 设计上 `if-not-exists` 全分支                                                 |
+| Codespace 创建 API 可用性    | ⚠️ **当前 zervi-genz PAT 缺 `codespace` scope**，需用户去 settings/tokens 加一次 |
+| 与 ADR-0004 部署流水线一致   | ✅ Vercel CLI 已预装在 post-create                                               |
+
+## Update (2026-09-06): 镜像模板教训与 docs 仓落地回写
+
+> **本条以「决策修正」覆盖上文 §1「基础 image：`mcr.microsoft.com/devcontainers/python:3.11-bullseye`（后端类）」指引。**
+> 新仓与 Tatha `70455cb` 模板复查一律以此为准。
+
+### 事故：bullseye 系 devcontainers image 的 Yarn apt 源 key 已失效
+
+`devcontainers/python:3.11-bullseye` 等 devcontainers 全家桶镜像自带 `dl.yarnpkg.com` apt 源，其 GPG key（`NO_PUBKEY 62D54FD4003F6525`）自 2026-09 起无法验证。任何执行 `apt-get update` 的 feature（实测 sshd feature）构建即失败 → **Codespaces 静默降级到 `devcontainers/base:alpine` 空容器**（无 gh / pip / GITHUB_TOKEN 注入 / git identity），表现为 commit/push 认证失败、postCreate 无法完成——docs 仓 codespace 两次构建成 Alpine 即此因。
+
+### 修正后模板原则（后端类仓）
+
+| 维度         | 原指引（bullseye devcontainers image） | 修正（2026-09-06 起）                                                                                                       |
+| ------------ | -------------------------------------- | --------------------------------------------------------------------------------------------------------------------------- |
+| 基础镜像     | devcontainers 全家桶 image             | **官方语言镜像自建 Dockerfile**（后端 `python:3.11-bookworm` 等），不引入第三方 apt 源                                      |
+| features     | 按需堆叠（sshd 等）                    | **最少化**；系统服务（如 sshd）直接在 Dockerfile `apt-get install`                                                          |
+| 用户         | image 内置 `vscode` 用户               | 自建 Dockerfile 需手动建 `vscode` 用户（UID 1000）+ 免密 sudo——Codespaces 以 `containerUser: vscode` 运行，缺用户容器起不来 |
+| git identity | 依赖 platform 注入                     | **禁止 post-create 写入无归属 stub email**（产生灰 commit）；回落 system 层注入的创建者身份                                 |
+
+### docs 仓落地链（`GenzLTD/docs`，2026-09-05~06）
+
+| Commit    | 内容                                                                      |
+| --------- | ------------------------------------------------------------------------- |
+| `9b916cf` | docs 引入 devcontainer + ADR-0006（bullseye 起点，后被推翻）              |
+| `fcca380` | 改 Dockerfile 方案（官方 `python:3.11-bookworm`，避开 Yarn apt key 失效） |
+| `999fe9e` | Dockerfile 建 `vscode` 用户 + 免密 sudo                                   |
+| `60880cc` | post-create.sh 移除无归属 identity stub，回落 system 注入身份             |
+
+> 待办：Tatha `70455cb` 等已用 bullseye devcontainers image 的仓，需按上述原则复查并迁移。
 
 ## References
 

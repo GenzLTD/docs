@@ -1,8 +1,8 @@
 # ADR 0007: tatha-frontend 线上部署链——真源、Vercel 组织归属与义务边界
 
-- **Status**: Proposed
+- **Status**: Accepted
 - **Date**: 2026-09-05
-- **Deciders**: szpeter2026, zervi-genz（待 Accept）
+- **Deciders**: szpeter2026, zervi-genz（Accepted 2026-09-06）
 - **Consulted**: xiajason, szjason72, zervi-genz 维护者
 - **Tags**: tatha-frontend, vercel, deployment, canonical, 组织治理
 
@@ -98,7 +98,7 @@
 
 ## Implementation checklist
 
-- [ ] Accept ADR-0004
+- [x] Accept ADR-0007
 - [ ] Vercel：将**生产** `tatha-frontend` project 改为 Git 集成绑定 `GenzLTD/tatha-frontend`，监听 main/prod（勿把个人 preview `tatha-frontend-org` 误当生产）
 - [ ] 收敛客户端：回收成员对生产 project 的 CLI 部署权，仅保留 dev/preview
 - [x] 成员预览先例：`szjason72-9160/tatha-frontend-org` → https://tatha-frontend-org.vercel.app（对齐 `a019b6a`；符合 §3 Allowed）
