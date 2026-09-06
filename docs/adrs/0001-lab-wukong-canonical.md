@@ -1,8 +1,8 @@
 # ADR 0001: lab-genz-brain-m2 与 wukong-core 的 canonical 关系
 
-- **Status**: Proposed
+- **Status**: Accepted
 - **Date**: 2026-09-05
-- **Deciders**: szpeter2026, zervi-genz（待 Accept）
+- **Deciders**: szpeter2026, zervi-genz（Accepted 2026-09-06）
 - **Consulted**: szjason72, 8bt8rcrg95-coder, xiajason
 - **Tags**: M2, gate, lab, wukong-core, policy
 

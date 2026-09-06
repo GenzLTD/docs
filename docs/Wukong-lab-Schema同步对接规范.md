@@ -2,7 +2,7 @@
 
 > 状态：**可执行规范**（Proposed）· 维护人：8bt8rcrg95-coder（你，负责人）
 > 日期：2026-09-06 · 关联仓库：`GenzLTD/Wukong`（真源）、`GenzLTD/lab-genz-brain-m2`（消费方）
-> 配套脚本：`docs/scripts/sync_wukong_schemas.py`
+> 配套脚本：`scripts/sync_wukong_schemas.py`
 
 ---
 
@@ -21,12 +21,12 @@ lab 的 64 矩阵、17 个测试、甚至线上门控口径都会建立在过期
 
 ### 权威路径
 
-| 角色 | 仓库/路径 | 说明 |
-|---|---|---|
-| **真源（Single Source of Truth）** | `GenzLTD/Wukong/docs/schemas/` | layer0/1/2 三个 JSON，改字段分级先改这里 |
-| **消费方（拷贝）** | `GenzLTD/lab-genz-brain-m2/schemas/` | 与真源**逐字节一致**；lab 引擎读取这里 |
-| 衍生态 | `GenzLTD/wukong-core/rules/` | 认知内核 PoC 再拷贝（见对账表文档） |
-| 实施 | `docs/scripts/sync_wukong_schemas.py` | 唯一 promote 入口 |
+| 角色                               | 仓库/路径                            | 说明                                     |
+| ---------------------------------- | ------------------------------------ | ---------------------------------------- |
+| **真源（Single Source of Truth）** | `GenzLTD/Wukong/docs/schemas/`       | layer0/1/2 三个 JSON，改字段分级先改这里 |
+| **消费方（拷贝）**                 | `GenzLTD/lab-genz-brain-m2/schemas/` | 与真源**逐字节一致**；lab 引擎读取这里   |
+| 衍生态                             | `GenzLTD/wukong-core/rules/`         | 认知内核 PoC 再拷贝（见对账表文档）      |
+| 实施                               | `scripts/sync_wukong_schemas.py`     | 唯一 promote 入口                        |
 
 > ⚠️ **只允许从上往下单向流动**：Wukong → lab →（lab 的 fixture/tests）。禁止反向把 lab 的改动当作真源。
 
@@ -36,11 +36,11 @@ lab 的 64 矩阵、17 个测试、甚至线上门控口径都会建立在过期
 
 只同步这三个真源 JSON，**不**搬运其他资产：
 
-| 文件名 | 内容 | 备注 |
-|---|---|---|
+| 文件名                 | 内容                                            | 备注 |
+| ---------------------- | ----------------------------------------------- | ---- |
 | `layer0_identity.json` | Layer0 身份核心字段（20 字段，含 privacy_tier） | 真源 |
-| `layer1_interest.json` | Layer1 兴趣字段（15 字段） | 真源 |
-| `layer2_profile.json` | Layer2 档案字段 | 真源 |
+| `layer1_interest.json` | Layer1 兴趣字段（15 字段）                      | 真源 |
+| `layer2_profile.json`  | Layer2 档案字段                                 | 真源 |
 
 明确**不在同步范围**（各有其归属）：
 - `vc_layer0/1_identity.json` —— DID/VC 凭证版，属 Wukong，不在 lab 判定链。
@@ -69,10 +69,10 @@ git push
 
 ```bash
 # 先做差异审计（只读，不写）
-python3 docs/scripts/sync_wukong_schemas.py --mode diff --wukong /tmp/Wukong
+python3 scripts/sync_wukong_schemas.py --mode diff --wukong /tmp/Wukong
 
 # 确认是预期变更后，写回 lab
-python3 docs/scripts/sync_wukong_schemas.py --mode sync --wukong /tmp/Wukong \
+python3 scripts/sync_wukong_schemas.py --mode sync --wukong /tmp/Wukong \
   --lab /Users/.../lab-genz-brain-m2
 ```
 
@@ -108,11 +108,11 @@ git push
 
 ## 四、漂移发现（未走流程时的自愈路径）
 
-| 症状 | 判断 | 处置 |
-|---|---|---|
-| lab 某 schema sha256 与 Wukong 不一致 | 一侧更新未同步 | 跑 `--mode diff` 看谁新，跑 `sync` |
-| `main.py drift` 报 DRIFT | yaml 与 Rust 语义漂移 | 按 parity-verification 重对拍 |
-| lab 测试红 | 字段/分级变更未联动测试 | 同步 yaml/fixture，勿绕过 |
+| 症状                                  | 判断                    | 处置                               |
+| ------------------------------------- | ----------------------- | ---------------------------------- |
+| lab 某 schema sha256 与 Wukong 不一致 | 一侧更新未同步          | 跑 `--mode diff` 看谁新，跑 `sync` |
+| `main.py drift` 报 DRIFT              | yaml 与 Rust 语义漂移   | 按 parity-verification 重对拍      |
+| lab 测试红                            | 字段/分级变更未联动测试 | 同步 yaml/fixture，勿绕过          |
 
 持续加固（后续可做）：在 lab 的 CI（`.github/workflows/`）加一步 `--mode check`，
 任何 Wukong 有推送而 lab 未同步即阻断——这条稳定后，本文档的 Step 1 可在 Web 完成、Step 2-4 交给 bot。

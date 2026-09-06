@@ -1,11 +1,11 @@
 # ADR-0008: docs 仓文档单真源化（根 ↔ `docs/` 双份收敛到 `docs/`）
 
-| 字段       | 值                                                                 |
-| ---------- | ------------------------------------------------------------------ |
-| Status     | **Proposed**                                                        |
-| Date       | 2026-09-06                                                          |
-| Deciders   | Accept：szpeter2026 (Admin)、zervi-genz (Admin)；起草：xiajason (Member) |
-| Scope      | `GenzLTD/docs`                                                      |
+| 字段                | 值                                                                                                                   |
+| ------------------- | -------------------------------------------------------------------------------------------------------------------- |
+| Status              | **Accepted**                                                                                                         |
+| Date                | 2026-09-06                                                                                                           |
+| Deciders            | Accept：szpeter2026 (Admin)、zervi-genz (Admin)；起草：xiajason (Member)                                             |
+| Scope               | `GenzLTD/docs`                                                                                                       |
 | Supersedes / Amends | Amends `README.md` 与 `docs/访问与参与指南.md` 的「根 ↔ `docs/` 同步」条款；承接 ADR-0006 确立的 docs 唯一治理源定位 |
 
 ## Context
@@ -25,7 +25,7 @@ ADR-0006 及此后 owner 的目录重组（`df4b8c4`）使 docs 仓同时存在�
 
 对 ADR 这类治理文件，副本滞后意味着**站点读者可能参考到过期决策**，与 ADR-0006「`GenzLTD/docs` 远端才是治理唯一源」的定位相悖——docs 站点成为第二个、且不可信的「源」。
 
-## Decision（Proposed）
+## Decision（Accepted 2026-09-06）
 
 **文档单一真源迁移至 `docs/`；根目录只保留仓库元数据与一个跳板 `README.md`。**
 
@@ -35,7 +35,7 @@ ADR-0006 及此后 owner 的目录重组（`df4b8c4`）使 docs 仓同时存在�
 根 = GitHub 网页视图                         根 = 仓库元数据 + 门户跳板
 ├─ README.md（门户正文）                     ├─ README.md（3~5 行定位 + 链接
 ├─ 8× 业务 md ──┐                             到 docs/README.md）
-├─ CATALOG.md  ├─ 人工同步，已漏            ├─ .github/  .devcontainer/ .vscode/
+├─ CATALOG.md  ├─ 人工同步，已漏            ├─ .github/ .devcontainer/ .vscode/
 ├─ adrs/ (9) ──┘                              ├─ scripts/  mkdocs.yml  .gitignore
 │                                              └─ （业务 md / CATALOG / adrs 迁入 docs/）
 docs/ = MkDocs 站点源
@@ -55,12 +55,12 @@ docs/ = MkDocs 站点源
 
 ### 候选方案
 
-| 方案 | 说明 | 结论 |
-| --- | --- | --- |
-| A. `docs_dir: .`，根为唯一源 | 站点直接读根，删除 `docs/` | 否决：根含 `.github/` `.devcontainer/` `scripts/` 等非文档资产，MkDocs 会把非 `.md` 文件当静态资源复制进 `site/`（且 `site/` 在根下存在目录递归风险）；并推翻 owner 已定案的站点隔离设计 |
-| **B. 真源迁入 `docs/`（本决策）** | 根仅元数据 + 跳板 README | **采纳**：顺 `docs_dir: docs` 定案而行；同步成本归零；ADR/CODEOWNERS 路径单一；GitHub 网页可经跳板与 `docs/` 内直链访问 |
-| C. 维持双份 + 同步纪律/CI 校验 | 现状 + 人工纪律与校验脚本 | 否决：分叉已在 0005/0006 发生；纯纪律在 Free plan 无强制力；CI 校验脚本引入新的维护面，且修复分叉仍需人工 |
-| D. `docs/` 为构建产物（gitignore + CI 生成） | 真源在根，CI 生成 `docs/` | 否决：`docs/` 已入库、owner 已将其作为评审与浏览对象；私有仓 Free plan 无法用 GitHub Pages 直接服务站点，收益不抵复杂度 |
+| 方案                                         | 说明                       | 结论                                                                                                                                                                                     |
+| -------------------------------------------- | -------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| A. `docs_dir: .`，根为唯一源                 | 站点直接读根，删除 `docs/` | 否决：根含 `.github/` `.devcontainer/` `scripts/` 等非文档资产，MkDocs 会把非 `.md` 文件当静态资源复制进 `site/`（且 `site/` 在根下存在目录递归风险）；并推翻 owner 已定案的站点隔离设计 |
+| **B. 真源迁入 `docs/`（本决策）**            | 根仅元数据 + 跳板 README   | **采纳**：顺 `docs_dir: docs` 定案而行；同步成本归零；ADR/CODEOWNERS 路径单一；GitHub 网页可经跳板与 `docs/` 内直链访问                                                                  |
+| C. 维持双份 + 同步纪律/CI 校验               | 现状 + 人工纪律与校验脚本  | 否决：分叉已在 0005/0006 发生；纯纪律在 Free plan 无强制力；CI 校验脚本引入新的维护面，且修复分叉仍需人工                                                                                |
+| D. `docs/` 为构建产物（gitignore + CI 生成） | 真源在根，CI 生成 `docs/`  | 否决：`docs/` 已入库、owner 已将其作为评审与浏览对象；私有仓 Free plan 无法用 GitHub Pages 直接服务站点，收益不抵复杂度                                                                  |
 
 ## Consequences
 
@@ -90,4 +90,4 @@ docs/ = MkDocs 站点源
 
 - Amends：根 `README.md`（§文档索引 / §2.1）、`docs/访问与参与指南.md`（§2.1/§4 双份同步条款）
 - Follows：ADR-0006（docs 为唯一治理源）——本 ADR 消除其双份模式带来的副本分叉
-- Review 路径：`/adrs/` CODEOWNER @szjason72 @xiajason（起草主线）；Accept 权 szpeter2026 / zervi-genz（Admin，per `adrs/README.md`）
+- Review 路径：`/docs/adrs/` CODEOWNER @szjason72 @xiajason（起草主线）；Accept 权 szpeter2026 / zervi-genz（Admin，per `docs/adrs/README.md`）
