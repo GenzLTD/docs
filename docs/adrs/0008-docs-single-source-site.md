@@ -2,7 +2,7 @@
 
 | 字段       | 值                                                                 |
 | ---------- | ------------------------------------------------------------------ |
-| Status     | **Proposed**                                                        |
+| Status     | **Accepted**                                                        |
 | Date       | 2026-09-06                                                          |
 | Deciders   | Accept：szpeter2026 (Admin)、zervi-genz (Admin)；起草：xiajason (Member) |
 | Scope      | `GenzLTD/docs`                                                      |
@@ -25,7 +25,7 @@ ADR-0006 及此后 owner 的目录重组（`df4b8c4`）使 docs 仓同时存在�
 
 对 ADR 这类治理文件，副本滞后意味着**站点读者可能参考到过期决策**，与 ADR-0006「`GenzLTD/docs` 远端才是治理唯一源」的定位相悖——docs 站点成为第二个、且不可信的「源」。
 
-## Decision（Proposed）
+## Decision
 
 **文档单一真源迁移至 `docs/`；根目录只保留仓库元数据与一个跳板 `README.md`。**
 
@@ -77,7 +77,7 @@ docs/ = MkDocs 站点源
 - 迁移后根目录旧 markdown 链接 404。docs 仓处于早期、外部引用极少，可接受；README 跳板提供新路径指引；
 - 根 `README.md` 由门户降为跳板，GitHub 主页正文需一次点击进入。
 
-### 采纳后执行清单（单独实施 PR）
+### 采纳后执行清单（已由本实施 PR 完成）
 
 1. `git mv` 根 8× 业务 md + `CATALOG.md` + `adrs/`（9 文件）→ `docs/`（保留历史）；
 2. 门户正文合并：根 `README.md` 正文迁至 `docs/README.md`，根 README 改写为跳板；
