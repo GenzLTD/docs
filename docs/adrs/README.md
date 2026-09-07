@@ -33,7 +33,7 @@ GenzLTD 架构决策记录。格式参考 [Michael Nygard ADR](https://cognitect
 - **M3 记忆合规**：以 ADR 0003 + cortex `compliance.py` 为准
 - **近期承诺范围**：以 ADR 0009（Accepted）为准——信任层，而非世界模型大脑
 - **90 天变现 / 可运营（Proposed）**：ADR 0010 提议把 Career Cosmos 第 4 条读成国内微信支付 + 三端可运营；**Accept 前仍以聚焦决策原文为准**。Stripe 沙盒不是深创赛交付
-- **Evidence**：`lab-genz-brain-m2` 测试、`genz-gate` CI 日志、本地验证报告、`looma-zervi` 支付验收文档
+- **Evidence**：`lab-genz-brain-m2` 测试、`genz-gate` CI 日志；支付以 `looma-zervi` `origin/main` 为准，未入库工作区不作 ADR 证据
 
 ## Links
 
