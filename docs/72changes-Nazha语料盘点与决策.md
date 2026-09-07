@@ -1,6 +1,6 @@
 # 72changes 与 Nazha（RAG 主线）差异盘点与「复用 or 归档」决策清单
 
-> 状态：**盘点报告 + 待拍板清单** · 维护人：8bt8rcrg95-coder（你）
+> 状态：**已拍板（2026-09-07）· 方案 A（完全归档，语料随它去）** · 盘点：8bt8rcrg95-coder
 > 日期：2026-09-06 · 对象：`GenzLTD/72changes`（你转入） vs `GenzLTD/Nazha`（线内 canonical）
 > 数据来源：实拉两仓库只读审计 + Nazha `docs/lineage/*` 三份决策文档 + docs/CATALOG
 
@@ -60,9 +60,9 @@
 
 ---
 
-## 三、决策清单（供 org owner 拍板 + 你执行）
+## 三、决策清单（已拍板 · 2026-09-07）
 
-> 推荐合并为**方案 C**（复用内容、归档代码），既守住内容资产又避免维护两条栈。
+> 已拍板：**方案 A（完全归档）**——72changes 代码仓归档只读，语料随它去（可重新爬的公开文档，不为历史包袱迁移）。
 
 | 方案 | 动作 | 收益 | 代价/风险 | 推荐度 |
 |---|---|---|---|---|
@@ -71,13 +71,10 @@
 | **C · 复用来料 + 归档代码（推荐）** | ①把 `E:\72Changes\md_documents_collected` 语料**纳入 Nazha 语料管线**（`import_corpus.py`）；②72changes 代码仓标记 ARCHIVED 只读，不再开发 | 内容资产保值且进主线；代码不再双栈维护 | 需一次语料迁移/去重；Nazha 需加索引容量评估 | ⭐⭐⭐⭐⭐ |
 | **D · 仅留档** | 语料长期存 NAS/冷备，不进 Nazha | 内容不丢但不增值 | 要决定冷备位置；Nazha 短期缺大语料 | ⭐⭐⭐ |
 
-### 执行 checklist（选 C 时）
-- [ ] 盘点 `E:\72Changes\md_documents_collected` 实际文件数/大小/格式分布（write 清单）。
-- [ ] 抽样几份进 Nazha `scripts/import_corpus.py` 试跑，验证分块与向量质量。
-- [ ] 定去重策略（与 Nazha 现 knowledge_base 文件 Jaccard 兜底，参考 CATALOG 的 hash 比对法）。
-- [ ] 全量导入 + 重跑 `tests/test_hybrid_search.py` / 持久化验证。
-- [ ] 72changes 仓加 `archived` topic + README 顶部 banner 说明"代码已归档，语料已并入 Nazha"。
-- [ ] 在 Nazha `docs/lineage/` 补一笔"语料接管"记录，更新 CATALOG。
+### 执行 checklist（已拍板 · 方案 A）
+- [ ] 72changes 仓加 `archived` topic + README 顶部 banner「代码已归档，只读」。
+- [ ] docs 仓 README 索引状态改「已拍板」。
+- [ ] 语料 `E:\72Changes\md_documents_collected` 随仓库归档，不迁移、不抢救（可重新爬的公开文档）。
 
 ### 不许做的事（红线）
 - ❌ 新建「72changes-2026 / Wukong 2.0」GitHub 仓。
@@ -88,9 +85,9 @@
 
 ## 四、责任人
 
-- **盘点/决策建议**：8bt8rcrg95-coder（你）——你是 72changes 转入方 + 该线未来负责点。
-- **拍板**：org owner（`zervi-genz` / `szpeter2026`）——方案 A/B/C/D 二选一。
-- **语料/数据确认**：szhen 环境（`E:\72Changes\`，Windows 本机维护者）。
+- **盘点**：8bt8rcrg95-coder（72changes 转入方 + 历史溯源任务执行者）。
+- **拍板**：org owner（szpeter2026）——方案 A（2026-09-07）。
+- **后续负责人**：szjason72。
 
 ## Links
 

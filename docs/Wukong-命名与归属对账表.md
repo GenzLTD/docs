@@ -56,16 +56,16 @@ lab-genz-brain-m2/schemas/               wukong-core/rules/
 
 ---
 
-## 四、给 org owner 的待拍板项
+## 四、拍板结果（2026-09-07 · org owner）
 
-| # | 待决点 | 我的建议 | 影响 |
+| # | 待决点 | 拍板结果 | 影响 |
 |---|---|---|---|
-| 1 | `wukong-core` 与 `Wukong` 是否合并/链接 | 不合并，保留独立仓 + 标注血缘 | 认知内核小而持续演进，真源不求并 |
-| 2 | schema 真源是否官方锁定为 `GenzLTD/Wukong/docs/schemas` | ✅ Owner 已确认，写进 ADR 冻结 | 终结"改哪个"争论；lab/wukong-core 都消费它 |
-| 3 | 是否把 [同步规范](./Wukong-lab-Schema同步对接规范.md) 提到的 `--mode check` 接入 CI | 上线前先人工，稳定后 CI | 防漂移的长治兼**
-| 4 | 谁是默认负责人 | **8bt8rcrg95-coder**（你）作为 schema 线 + 72changes 接管者 | 责任明确 |
+| 1 | `wukong-core` 与 `Wukong` 是否合并/链接 | **不合并**，保留独立仓 + topics/README 标注血缘 | 认知内核小而持续演进，真源不求并 |
+| 2 | schema 真源是否官方锁定为 `GenzLTD/Wukong/docs/schemas` | **锁定**，写进 ADR-0001 冻结 | 终结"改哪个"争论；lab/wukong-core 都消费它 |
+| 3 | 是否把 [同步规范](./Wukong-lab-Schema同步对接规范.md) 提到的 `--mode check` 接入 CI | **先人工，稳定后再接 CI** | 防漂移的长治久安 |
+| 4 | 谁是默认负责人 | **szjason72**（schema 线 + 72changes 接管） | 责任明确 |
 
-Owner 已确认「Schema 真源 = Wukong」；后续按本表执行，并在可访问外部仓库后补充对应 ADR/CI 落地。
+> 已拍板（2026-09-07）：Schema 真源 = `GenzLTD/Wukong`；负责人 = szjason72；不合并、不强制 CI。后续按本表执行，可访问外部仓库后补充 ADR/CI 落地。
 
 ---
 
