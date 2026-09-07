@@ -25,6 +25,7 @@ RUN apt-get update \
         ca-certificates \
         curl \
         git \
+        ripgrep \
         sudo \
     && rm -rf /var/lib/apt/lists/* \
     && groupadd --gid ${USER_GID} ${USERNAME} \

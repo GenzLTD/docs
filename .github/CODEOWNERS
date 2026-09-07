@@ -10,3 +10,4 @@
 # 其余文档——Owner 群兜底（兜底层避免僵局）
 /*.md    @zervi-genz @szpeter2026
 /.github/ @zervi-genz @szpeter2026
+/.devcontainer/ @zervi-genz @szpeter2026
