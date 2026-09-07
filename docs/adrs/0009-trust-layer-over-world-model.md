@@ -1,8 +1,8 @@
 # ADR 0009: 近期目标收敛为「人与虚拟世界交互的信任层」
 
-- **Status**: Proposed
+- **Status**: Accepted
 - **Date**: 2026-09-07
-- **Deciders**: 待 `zervi-genz` / `szpeter2026` Accept
+- **Deciders**: `szpeter2026`（Accepted 2026-09-07）
 - **Consulted**: szjason72（起草）、xiajason、本机 M2/ADR-0003 验证
 - **Tags**: strategy, trust-layer, M2, capacity, human-in-the-loop
 
@@ -60,12 +60,12 @@
 
 ## Implementation checklist
 
-- [ ] Accept 本 ADR（owner）
-- [ ] 路线图回写：M2 **门控切片** = 完成；M2 世界模型 / M3–M6 = 远景，非近期承诺
-- [ ] 架构设计文首增加「远景 / 受 ADR-0009 约束」状态
-- [ ] owner 配置 `GENZ_GATE_PAT`，三仓 genz-gate 真跑
-- [ ] 发布物补 `genz.policy_bundle_commit`（ADR-0003 未勾项）
-- [ ] 不新开「Agent loop / 五槽落地」作为本季度必交
+- [x] Accept 本 ADR（owner）— `szpeter2026` 2026-09-07
+- [x] 路线图回写：M2 **门控切片** = 完成；M2 世界模型 / M3–M6 = 远景，非近期承诺
+- [x] 架构设计文首增加「远景 / 受 ADR-0009 约束」状态
+- [x] owner 配置 `GENZ_GATE_PAT`，三仓 genz-gate 真跑（2026-09-07 已配，三仓全绿）
+- [x] 发布物补 `genz.policy_bundle_commit`（ADR-0003 未勾项）— cortex-mcp 已补
+- [x] 不新开「Agent loop / 五槽落地」作为本季度必交
 
 ## Links
 
