@@ -32,6 +32,7 @@
 | [Wukong-lab-Schema同步对接规范.md](Wukong-lab-Schema同步对接规范.md) | Wukong(真源)→lab 的 Layer0/1/2 schema 同步规范 + promote 流程 + 脚本 | 可执行      |
 | [Wukong-命名与归属对账表.md](Wukong-命名与归属对账表.md)             | Wukong vs wukong-core vs lab 命名与归属对账（不合并/锁真源/负责人 szjason72） | 已拍板      |
 | [72changes-Nazha语料盘点与决策.md](72changes-Nazha语料盘点与决策.md) | 72changes 与 RAG 主线 Nazha 差异盘点 + 归档决策（方案 A）             | 已拍板      |
+| [Nazha归口-ServBay承载方案.md](docs/Nazha归口-ServBay承载方案.md)     | Nazha 知识库归口的本机承载宿主：nazha.servbay.host → 127.0.0.1:5220（gfcc demopeter，launchd 托管） | 方案已钉死（2026-09-07）· 归口实证见附录（2026-09-08） |
 
 ## 关联代码仓库
 

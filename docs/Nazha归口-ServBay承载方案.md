@@ -1,6 +1,7 @@
 # Nazha 归口 · 本机 ServBay 承载方案
 
 > 状态：**方案已钉死（2026-09-07）· 只文档化、不铺常驻** · 决策：org owner（szpeter2026）
+> 更新（2026-09-08）：首笔主线归口实证 `GenzLTD/Nazha 095efc5`（agent_memory 语料）回应「归口＝本地跑测试」质疑；§五第 1 项转「已实证」。详见文末附录。
 > 对象：Nazha/DemoPeter 知识库归口的**本机承载宿主**，先于「归口流程/语料源/审核」三件事落地
 > 前文关联：[72changes-Nazha语料盘点与决策.md](./72changes-Nazha语料盘点与决策.md)（语料侧，方案 A 已拍板）
 
@@ -162,7 +163,7 @@ cd ~/Projects/gfcc/services/demopeter && .venv/bin/python scripts/query.py "任�
 
 | # | 待拍板项 | 现状 | 备注 |
 |---|---|---|---|
-| 1 | **归口语料源** | 72changes 大语料已拍「方案 A 不迁移」 | 待定：Nazha 四类目录首轮归口的输入文档集 |
+| 1 | **归口语料源** | 72changes 大语料已拍「方案 A 不迁移」 | **已实证（2026-09-08）**：agent_memory（L3/nazha_ready，4 mac + 16 win，`095efc5`，见文末附录）；四类目录其余首轮输入仍待定 |
 | 2 | **审核人与节奏** | CONTRIBUTING.md 已有 Review 流程 | 待定：归口 MR/PR 的具名 reviewer |
 
 （原「归口形态」已被本文档替代：宿主 = 本机 `nazha.servbay.host:5220` gfcc 树 + 天翼同树。）
@@ -174,6 +175,26 @@ cd ~/Projects/gfcc/services/demopeter && .venv/bin/python scripts/query.py "任�
 - **核查与方案**：8bt8rcrg95-coder（2026-09-07 只读盘点，未创建/修改运行实例）。
 - **拍板**：org owner（szpeter2026）——先文档化、不铺常驻。
 - **执行前置动作**（进入执行阶段时才做）：追加 `deploy-servbay-sites.sh` SITES 行 → 写 launchd plist → 按第四节验收。
+
+## 附录：归口实证与困惑消解（2026-09-08）
+
+> 本附录回应 §一 被质疑项「像是在安排本地跑测试」，并据首笔主线归口实证更新 §五 第 1 项。决策：org owner（szpeter2026）。
+
+### 实证：首笔主线归口 commit
+
+| 项 | 内容 |
+|---|---|
+| 提交 | `GenzLTD/Nazha` `095efc5` `feat(kb): 归口 agent_memory 记忆语料(L3/nazha_ready, 4 mac + 16 win)`，2026-09-08 push main |
+| 身份 | szpeter2026（org owner） |
+| 规模 | 21 文件 / +8927 行：`knowledge_base/documents/md/agent_memory_mac-jason/`（4，Cline 任务卡）+ `agent_memory_windows-szben/`（16，cline 对话转录） |
+| 出处 | 跨机记忆蒸馏（memory_distill 范式）→ `memory_vault layers/L3/nazha_ready`，P0 脱敏；每份带 front matter（source_agent/machine/verdict 等），按机分目录、不混灌 |
+| 契约 | Nazha README 新增「记忆语料归口」节：备份蒸馏 → L3 人审 → 归口 → 导入 + RAG 验证 → 提交；禁改语料正文、禁回拷 vault 原文 |
+
+### 消解与边界（防 org 误读）
+
+- **已消解（归口不是本地跑测试）**：语料已作为真实 commit 进 `GenzLTD/Nazha` 主线，远端可拉取、可走既有 Review 流程；§五第 1 项「归口语料源」**待定 → 已实证**（agent_memory 为首笔输入，策略沿用方案 A 语境：只收蒸馏后 L3 就绪料，不为历史包袱迁移大语料）。
+- **未消解 / 未执行**：本文档 §三 执行前置动作（ServBay SITES 行、launchd plist）与 §四 本机承载验收（`nazha.servbay.host:5220` 起服 + `query.py` 可检索）**仍未触发**；`gfcc/services/demopeter` 宿主树尚未导入 agent_memory。本附录不改「先文档化、不铺常驻」结论。
+- **仍待拍板**：§五 第 2 项「审核人与节奏」（归口 MR/PR 具名 reviewer）。
 
 ## Links
 
