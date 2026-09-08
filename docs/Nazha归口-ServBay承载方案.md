@@ -1,7 +1,8 @@
 # Nazha 归口 · 本机 ServBay 承载方案
 
 > 状态：**方案已钉死（2026-09-07）· 只文档化、不铺常驻** · 决策：org owner（szpeter2026）
-> 更新（2026-09-08）：首笔主线归口实证 `GenzLTD/Nazha 095efc5`（agent_memory 语料）回应「归口＝本地跑测试」质疑；§五第 1 项转「已实证」。详见文末附录。
+> 更新（2026-09-08）：首笔主线归口实证 `GenzLTD/Nazha 095efc5`（agent_memory 语料）回应「归口＝本地跑测试」质疑；§五第 1 项转「已实证」。详见文末附录一。
+> 更新（2026-09-08 · 二）：检索回归黄金集落地（`GenzLTD/Nazha bc00373`，CI 双绿）——从受版控语料确定性重建 + Issue #1 固化问句断言，把「组织复核只能手工重嵌」变「push 即验证」。详见文末附录二。
 > 对象：Nazha/DemoPeter 知识库归口的**本机承载宿主**，先于「归口流程/语料源/审核」三件事落地
 > 前文关联：[72changes-Nazha语料盘点与决策.md](./72changes-Nazha语料盘点与决策.md)（语料侧，方案 A 已拍板）
 
@@ -176,7 +177,7 @@ cd ~/Projects/gfcc/services/demopeter && .venv/bin/python scripts/query.py "任�
 - **拍板**：org owner（szpeter2026）——先文档化、不铺常驻。
 - **执行前置动作**（进入执行阶段时才做）：追加 `deploy-servbay-sites.sh` SITES 行 → 写 launchd plist → 按第四节验收。
 
-## 附录：归口实证与困惑消解（2026-09-08）
+## 附录一：归口实证与困惑消解（2026-09-08）
 
 > 本附录回应 §一 被质疑项「像是在安排本地跑测试」，并据首笔主线归口实证更新 §五 第 1 项。决策：org owner（szpeter2026）。
 
@@ -195,6 +196,33 @@ cd ~/Projects/gfcc/services/demopeter && .venv/bin/python scripts/query.py "任�
 - **已消解（归口不是本地跑测试）**：语料已作为真实 commit 进 `GenzLTD/Nazha` 主线，远端可拉取、可走既有 Review 流程；§五第 1 项「归口语料源」**待定 → 已实证**（agent_memory 为首笔输入，策略沿用方案 A 语境：只收蒸馏后 L3 就绪料，不为历史包袱迁移大语料）。
 - **未消解 / 未执行**：本文档 §三 执行前置动作（ServBay SITES 行、launchd plist）与 §四 本机承载验收（`nazha.servbay.host:5220` 起服 + `query.py` 可检索）**仍未触发**；`gfcc/services/demopeter` 宿主树尚未导入 agent_memory。本附录不改「先文档化、不铺常驻」结论。
 - **仍待拍板**：§五 第 2 项「审核人与节奏」（归口 MR/PR 具名 reviewer）。
+
+## 附录二：检索回归黄金集——归口验证可复核化（2026-09-08 · 二）
+
+> 背景：附录一实证「语料已作为真实 commit 进主线」，但组织复核检索质量仍需在本机手工重嵌（`chroma_data` 不进 git）。本附录回应「归口后如何复核」。
+> 状态：**已落地（R1-3）· push 即验证 · CI 双绿** · 红线维持（本文档不改结论，未触发 §三 执行前置动作）。
+
+### 落地实证（工具/测试线，无运行实例新增）
+
+| 项 | 内容 |
+|---|---|
+| 提交 | `GenzLTD/Nazha` `bc00373` `test(retrieval): 检索回归黄金集——语料确定性重建 + Issue#1 阈值回归（push 即验证）`，2026-09-08 push main |
+| CI | `.github/workflows/retrieval-regression.yml` 双 job：**unit**（无模型单测 39 通过）+ **golden**（从 20 篇受版控语料全量重建回归索引 → 11 条黄金问句断言）；2026-09-08 双绿 |
+| 本地实测 | 重建 411 chunks ≈8.3s（MPS）；相关问句 top-1 0.62~0.77、无关问句 ≤0.40，检索阈值 **0.5** 的分界余量完好；语义锚全部命中 |
+| 机制 | 黄金集 `tests/golden/retrieval_golden.json` 固化 Issue #1 组织验证问句与逐案阈值；回归 collection（`golden_agent_memory_v1`）与生产库物理隔离；索引指纹（语料 sha256 / 分块 / 嵌入版本）落 `reports/index_manifest.json` |
+| 守门 | 语料增删或嵌入模型 / 分块参数一变，期望不符直接判红，漂移不再静默；相关问句另设**语义锚**（top-3 命中须含锚词，如 `PlanetX`/`guibu`/`反代`），防「分数过线但命中无关 chunk」的假阳性 |
+
+### 诚实修正（重标定一条 Issue #1 原句）
+
+组织验证短问句「ServBay 反代」在 20 篇语料中**无 servbay 字样**，重建后 top-1=0.599 假阳性命中 design-token chunk（org 记录的 0.711 应来自不同问句措辞或库态），不足以作相关锚 → 已按 probe 重标定为可锚问句「api.szbolent.cn 的 nginx 反代怎么配置」（实测 top-1 0.766 命中 nginx/反代语境），全过程记录在黄金集 JSON 的 `source`/`note`。这恰是守门价值：往语料补 ServBay 内容或换嵌入模型时，它会判红提醒重标定，而非静默漂移。
+
+### R4 仍待 org 拍板
+
+| # | 待办 | 现状 |
+|---|---|---|
+| 1 | Issue #1「检索阈值标定验证」复核 0.5 后 close | 验证数值已沉淀 repo（`vector_store.py` docstring + `retrieval_golden.json`），close 动作在 org issue 系统执行 |
+| 2 | §五 第 2 项：归口语料 MR/PR 具名 reviewer | 仍空 |
+| 3 | `gfcc/services/demopeter` 宿主树（5220）导入 agent_memory 与**双树同脚本一致性** | 未执行（承接 R2，随 §三/§四 执行前置动作一起排期） |
 
 ## Links
 
