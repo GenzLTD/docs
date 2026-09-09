@@ -22,6 +22,8 @@
 - Never commit tokens, credentials, private keys, personal data, or unverified cross-repository claims.
 - Changes under `docs/adrs/`, `.github/`, `.devcontainer/`, or Markdown files require the applicable CODEOWNER review. The author must not approve their own PR.
 - Treat schema synchronization as a reviewed promotion: inspect `diff`/`check` output before using `sync`, and run the consumer repository's tests after synchronization. Do not modify external repositories unless the task explicitly requires it.
+- Before answering organization status, current priorities, or “what should the team work on”, the local `GenzLTD/docs` clone must match `origin/main` (gate), then **grounded** retrieve — `python scripts/docs_grounded_search.py` from the bridle clone after `python scripts/sync_genz_docs.py`, with `GENZ_DOCS_DIR` set. Do not treat raw `kb_search` / hybrid neighbors as evidence. Cite SHA + path + Status (Accepted / 已决策 / Proposed). If the identifier is not in filename, title, or snippet, say `docs 未记载`. Chat history is not memory; do not `remember` Proposed or “未记载” as Accepted. See [ADR-0011](docs/adrs/0011-dsh-bridle-freeze-career-cosmos.md).
+- Do not treat `GenzLTD/dsh-bridle` as a product line, public plugin, knowledge cortex, or 90-day work item. It is a **local working-memory probe**. Trust-layer memory writes stay on cortex `remember` (ADR-0003) + Wukong gate + `genz-verify`. This does not revive ADR-0009’s frozen Agent-loop / M3 memory-layer delivery. Poetry corpus pipelines and talent RAG indexes are out of current scope.
 
 ## Validation commands
 

@@ -23,7 +23,7 @@
 
 | 文档                                                                 | 内容                                                                 | 状态        |
 | -------------------------------------------------------------------- | -------------------------------------------------------------------- | ----------- |
-| [聚焦决策-Career-Cosmos-90天.md](docs/聚焦决策-Career-Cosmos-90天.md) | 团队聚焦决策：一条主线（Career Cosmos 矩阵为融资服务）+ 90 天硬动作   | 已决策      |
+| [聚焦决策-Career-Cosmos-90天.md](docs/聚焦决策-Career-Cosmos-90天.md) | 团队聚焦决策：一条主线（Career Cosmos 矩阵为融资服务）+ 90 天硬动作   | 已决策；dsh-bridle 冻结见 [ADR-0011](docs/adrs/0011-dsh-bridle-freeze-career-cosmos.md) |
 | [访问与参与指南](docs/访问与参与指南.md)                             | 成员访问仓库、使用 Codespaces、提交评审和运行维护知识库的入口说明    | 持续维护    |
 | [新一代智能大脑架构设计.md](docs/新一代智能大脑架构设计.md)               | 八大设计决策 + 业界参考 + 与 DeepSeek Harness 差异化                 | v0.2 研讨稿；受 [ADR-0009](docs/adrs/0009-trust-layer-over-world-model.md) Accepted 约束 |
 | [新一代智能大脑-落地路线图.md](docs/新一代智能大脑-落地路线图.md)         | M0–M6 里程碑 + 验收标准                                              | v0.1；承诺范围见 ADR-0009 |
@@ -43,6 +43,7 @@
 | `GenzLTD/Wukong`         | 认知内核原生真源（跨境数据共识匹配平台）     | ② 参考   |
 | `GenzLTD/72changes`      | RAG 知识库原生实现（Spring Boot）            | ③ 参考   |
 | `GenzLTD/looma-zervi`    | 主 monorepo                                  | 主体     |
+| `GenzLTD/dsh-bridle`     | Nazha 白标 MCP RAG（内部冻结；各人本机口径适配器） | ADR-0011 |
 
 ## 演进约定
 

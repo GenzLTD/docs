@@ -23,7 +23,7 @@
 
 | 文档                                                                                 | 内容                                                                          | 状态                                                                                |
 | ------------------------------------------------------------------------------------ | ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- |
-| [聚焦决策-Career-Cosmos-90天.md](聚焦决策-Career-Cosmos-90天.md)                     | 团队聚焦决策：一条主线（Career Cosmos 矩阵为融资服务）+ 90 天硬动作           | 已决策；第 4 条 Proposed 读法见 [ADR-0010](adrs/0010-cn-wechat-pay-three-client-ops.md) |
+| [聚焦决策-Career-Cosmos-90天.md](聚焦决策-Career-Cosmos-90天.md)                     | 团队聚焦决策：一条主线（Career Cosmos 矩阵为融资服务）+ 90 天硬动作           | 已决策；第 4 条 Proposed 读法见 [ADR-0010](adrs/0010-cn-wechat-pay-three-client-ops.md)；dsh-bridle 冻结见 [ADR-0011](adrs/0011-dsh-bridle-freeze-career-cosmos.md) |
 | [聚焦决策-Career-Cosmos-90天-调研建议.md](聚焦决策-Career-Cosmos-90天-调研建议.md)   | 对 90 天聚焦决策的外部调研、风险判断和执行重排建议                            | 评审建议                                                                            |
 | [ADR-0010-owner产品化评审意见-20260907.md](ADR-0010-owner产品化评审意见-20260907.md) | 三端支付作为统一现金流管道与商业期权的 Owner 评审意见                         | 评审建议                                                                            |
 | [ADR-0010-团队配合事项-20260907.md](ADR-0010-团队配合事项-20260907.md)               | ADR-0010 落地所需商户、回调、三端演示配合；非 Accept 证据                     | Proposed 配套                                                                       |
@@ -46,6 +46,7 @@
 | `GenzLTD/Wukong`         | 认知内核原生真源（跨境数据共识匹配平台）     | ② 参考   |
 | `GenzLTD/72changes`      | RAG 知识库原生实现（Spring Boot）            | ③ 参考   |
 | `GenzLTD/looma-zervi`    | 主 monorepo                                  | 主体     |
+| `GenzLTD/dsh-bridle`     | Nazha 白标 MCP RAG（内部冻结；各人本机口径适配器） | ADR-0011 |
 
 ## 演进约定
 

@@ -1,6 +1,6 @@
 # GenzLTDbackup 仓库总索引（CATALOG）
 
-> 生成时间：2026-09-02 · 更新：2026-09-04
+> 生成时间：2026-09-02 · 更新：2026-09-09
 > 扫描范围：`D:/servbay-win-kit/GenzLTDbackup/` 下 git 仓库（初扫 34 个）
 > 方法：逐仓库提取 remote / 技术栈 / 文件数 + 两两 Jaccard 相似度 + 逐文件 hash 比对（雷同簇）
 > 文件数口径：剔除依赖目录（node_modules / .git / dist / .next 等）与二进制后的有效文件数
@@ -12,6 +12,10 @@
 3. **新增 2 个仓**：`wukong-core`（认知内核落地）、`docs`（架构知识库）。
 4. **发现团队 2026-05-28 三线结论**：Wukong / 72changes / Nazha 三者无 git 血缘；Nazha=代码主线、Wukong=schema 参考、72changes=归档。详见「七、Wukong 血缘」。
 5. `looma-zervi` 有更新（9-02 → 9-03）。
+
+### 更新日志（2026-09-09）
+
+6. **`GenzLTD/dsh-bridle`**：Nazha 白标 MCP RAG，已转入组织私有仓。产品化冻结，不进 Career Cosmos 90 天编制。见 [ADR-0011](adrs/0011-dsh-bridle-freeze-career-cosmos.md)。RAG 代码主线仍是 Nazha；bridle 不是第四条产品线。
 
 ---
 
@@ -199,6 +203,7 @@ Looma / zervi 产品线：
 - **停做**「Wukong + 72changes 双栈并行」；新 RAG 只在 **Nazha/DemoPeter** 开发。
 - **保留只读**：Wukong 的 Layer0 schema 供 YeDall Looma 对照；72changes 作 Java/Spring AI 历史样本。
 - **勿开第四仓**做「Wukong 3.0」，在 Nazha 迭代即可。
+- **2026-09-09**：`dsh-bridle` 是 Nazha 白标 MCP 挂件，**不是**第四条 RAG 产品线；产品化冻结见 [ADR-0011](adrs/0011-dsh-bridle-freeze-career-cosmos.md)。
 - 历史命名（均非活跃 GitHub 组织，已查证 Not Found）：`zervi-genzltd` = 5-28 文档里的旧 canonical 组织名，后仓库统一迁至 GenzLTD；`SurfaceZervi` = 本地镜像代号（2026-03 存放 Wukong/72changes 的 Fossil 导出快照）。
 
 > 校准：Wukong 定位为「认知内核 schema 真源」不变（供 wukong-core 对照），但 RAG 代码主线是 Nazha，不是 72changes。
