@@ -26,18 +26,14 @@ if ! need_cmd gh; then
   echo "warning: 'gh' not found (github-cli feature unavailable). git identity/PR hints skipped."
 fi
 
-# 2. mkdocs preview (only if user wants to render the docs site)
+# 2. Keep the preview toolchain aligned with CI.
 # sudo when available (custom Dockerfile images ship passwordless sudo), so pip
 # can write to the system site-packages owned by root.
 SUDO=""
 if need_cmd sudo; then SUDO="sudo"; fi
-if ! python3 -c "import mkdocs_material" >/dev/null 2>&1; then
-  echo "installing mkdocs-material..."
-  $SUDO $PIP install --quiet --disable-pip-version-check \
-    "mkdocs-material>=9.5" \
-    "mkdocs-mermaid2-plugin>=1.1" \
-    "pymdown-extensions>=10.7"
-fi
+echo "installing locked MkDocs dependencies..."
+$SUDO $PIP install --quiet --disable-pip-version-check \
+  -r "${REPO_ROOT}/requirements-docs.txt"
 
 # 3. mkdocs scaffold (only if absent)
 # mkdocs.yml is tracked in-repo since df4b8c4 (ADR-0008 context). This scaffold
