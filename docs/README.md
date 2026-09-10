@@ -39,6 +39,8 @@
 | [72changes-Nazha语料盘点与决策.md](72changes-Nazha语料盘点与决策.md)                 | 72changes 与 RAG 主线 Nazha 差异盘点 + 归档决策（方案 A）                     | 已拍板                                                                              |
 | [Nazha归口-ServBay承载方案.md](Nazha归口-ServBay承载方案.md)                           | Nazha 知识库归口的本机承载宿主：nazha.servbay.host → 127.0.0.1:5220（gfcc services/demopeter，launchd 托管） | 方案已钉死（2026-09-07）· 归口实证 + 检索回归黄金集见附录（2026-09-08）                            |
 
+| [探针-真实简历验证-合规范围与设计输入-20260910.md](探针-真实简历验证-合规范围与设计输入-20260910.md) | 简历→信任链路的**合规范围与设计输入**（非立项决策）：缺口诊断（简历补「验证」不补「评价」；现有实现里自述恒为 `weak`，多跑简历边际收益为零）+ 交叉印证设计（S1–S4 来源分层 / 三态输出）+ 契约映射与已存在的 `evidence_type` 漂移（`resume`、`match_scan`、`match_consensus` 未入 enum）+ 合规四件套差距 + 6 项待决问题 | 探针（Proposed，待评审） |
+
 ## 关联代码仓库
 
 | 仓库                     | 定位                                         | 对应决策 |
