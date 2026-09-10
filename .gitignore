@@ -1,2 +1,5 @@
 # local mkdocs build output
 site/
+
+# sandbox: Ed25519 test private key must never be committed
+sandbox/**/demo_ed25519_private.pem
