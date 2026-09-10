@@ -4,6 +4,7 @@ on:
   pull_request:
     paths:
       - "docs/**"
+      - "sandbox/**"
       - "mkdocs.yml"
       - "README.md"
       - "requirements-docs.txt"
@@ -13,6 +14,7 @@ on:
     branches: [main]
     paths:
       - "docs/**"
+      - "sandbox/**"
       - "mkdocs.yml"
       - "README.md"
       - "requirements-docs.txt"
@@ -35,3 +37,22 @@ jobs:
 
       - name: Build docs (strict)
         run: mkdocs build --strict
+
+  sandbox-validation:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install sandbox dependencies
+        run: pip install jsonschema cryptography
+
+      - name: Run sandbox validators (schema + red lines + k-anonymity)
+        run: |
+          for f in sandbox/*/validate_edges.py; do
+            echo "== $f =="
+            python "$f"
+          done
