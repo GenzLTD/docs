@@ -1,0 +1,64 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "genzltd/peer-evaluation-edge/v0",
+  "title": "Peer Evaluation Edge Schema v0",
+  "description": "互评记录（人际评价边）数据结构储备稿。来源：管理能力评价表与行为评价表.doc 解剖 + 诗词语料评价边验证。设计输入，非立项决策。",
+  "type": "object",
+  "required": ["edge_id", "cycle_id", "source_pseudo_id", "target_pseudo_id", "source_role", "instrument_version", "items", "created_at"],
+  "properties": {
+    "edge_id": { "type": "string", "pattern": "^edge_[0-9a-f]{8}$", "description": "评价边唯一标识" },
+    "cycle_id": { "type": "string", "description": "评价周期标识（如 2026Q3、proj-xxx），支撑时间轴声誉模型" },
+    "source_pseudo_id": { "type": "string", "description": "评价人伪匿名 ID；与真实身份的映射表物理分离保管" },
+    "target_pseudo_id": { "type": "string", "description": "被评价人伪匿名 ID" },
+    "source_role": { "enum": ["peer", "subordinate", "superior", "self", "client"], "description": "评价关系类型；self 边不入共识计算（防自证）" },
+    "instrument_version": { "type": "string", "description": "量表版本，如 mgmt-eval-1.0（夏峻表 v1）" },
+    "items": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["dim_id", "raw_score"],
+        "properties": {
+          "dim_id": { "type": "string", "description": "维度，如 cooperation/responsibility/time_discipline/creativity/communication" },
+          "method": { "enum": ["forced_choice", "bars", "weighted_score"], "description": "评价原语：强迫选择(2分制)/行为锚定(1-5)/加权评分" },
+          "choice": { "enum": ["A", "B"], "description": "forced_choice 专用：A=正向锚(2分) B=反向锚(1分)" },
+          "level": { "type": "integer", "minimum": 1, "maximum": 5, "description": "bars 专用等级" },
+          "raw_score": { "type": "number" },
+          "anchored_text": { "type": "string", "description": "命中的行为锚点原文（可审计证据线索）" }
+        }
+      }
+    },
+    "scored": {
+      "type": "object",
+      "properties": {
+        "per_dim": { "type": "object", "additionalProperties": { "type": "number" } },
+        "weighted_total": { "type": "number", "description": "Σ(维度分×权重)，attitude 类量表输出" }
+      }
+    },
+    "free_text": { "type": "string", "description": "评价人意见；入图前必须过字段级脱敏闸门" },
+    "evidence_refs": {
+      "type": "array",
+      "items": { "type": "string", "pattern": "^sha256:[0-9a-f]{64}$" },
+      "description": "事件/文档锚点，只存哈希不存原文（图级脱敏）"
+    },
+    "signature": {
+      "type": "object",
+      "properties": {
+        "algorithm": { "const": "Ed25519" },
+        "format": { "const": "looma_sig_v1" },
+        "value": { "type": "string" }
+      },
+      "description": "对齐 looma-zervi trust.v1.json attestation 签名格式"
+    },
+    "consent": {
+      "type": "object",
+      "properties": {
+        "granted": { "type": "boolean" },
+        "scope": { "type": "string" }
+      },
+      "description": "被评价人知情同意记录（PIPL 合规）"
+    },
+    "created_at": { "type": "string", "format": "date-time" }
+  },
+  "constraints_note": "入库前置校验（应用层）：1) source_pseudo_id != target_pseudo_id；2) free_text 已过脱敏；3) 同一 (cycle, source, target) 不可重复提交。"
+}
