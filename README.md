@@ -33,6 +33,7 @@
 | [Wukong-命名与归属对账表.md](Wukong-命名与归属对账表.md)             | Wukong vs wukong-core vs lab 命名与归属对账（不合并/锁真源/负责人 szjason72） | 已拍板      |
 | [72changes-Nazha语料盘点与决策.md](72changes-Nazha语料盘点与决策.md) | 72changes 与 RAG 主线 Nazha 差异盘点 + 归档决策（方案 A）             | 已拍板      |
 | [Nazha归口-ServBay承载方案.md](docs/Nazha归口-ServBay承载方案.md)     | Nazha 知识库归口的本机承载宿主：nazha.servbay.host → 127.0.0.1:5220（gfcc demopeter，launchd 托管） | 方案已钉死（2026-09-07）· 归口实证见附录（2026-09-08） |
+| [sandbox/evaluation-edge-virtual-sandbox-20260910](sandbox/evaluation-edge-virtual-sandbox-20260910/README.md) | evaluation_edge Schema v0 虚拟互评沙盘：36 条样例 + 9 红线校验器 + k-匿名共识聚合（零真实个人信息） | 验证通过 6/6；设计输入，非立项 |
 
 ## 关联代码仓库
 
