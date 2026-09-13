@@ -37,7 +37,8 @@
 | [72changes-Nazha语料盘点与决策.md](72changes-Nazha语料盘点与决策.md) | 72changes 与 RAG 主线 Nazha 差异盘点 + 归档决策（方案 A）             | 已拍板      |
 | [Nazha归口-ServBay承载方案.md](docs/Nazha归口-ServBay承载方案.md)     | Nazha 知识库归口的本机承载宿主：nazha.servbay.host → 127.0.0.1:5220（gfcc demopeter，launchd 托管） | 方案已钉死（2026-09-07）· 归口实证见附录（2026-09-08） |
 | [sandbox/evaluation-edge-virtual-sandbox-20260910](sandbox/evaluation-edge-virtual-sandbox-20260910/README.md) |
-| [治理口径-实验边界与执行规范-20260914.md](docs/治理口径-实验边界与执行规范-20260914.md) | 统一口径：允许试验 / 禁止伪装事实 / 保留创新 / 守住合规；dsh-bridle 冻结维持（ADR-0011）；pgvector=技术准备项非业务承诺；owner 拍板机制与 PR review 依据 | Owner Directive（2026-09-14） | evaluation_edge Schema v0 虚拟互评沙盘：36 条样例 + 9 红线校验器 + k-匿名共识聚合（零真实个人信息） | 验证通过 6/6；设计输入，非立项 |
+| [治理口径-实验边界与执行规范-20260914.md](docs/治理口径-实验边界与执行规范-20260914.md) |
+| [成员分工与后续任务-20260913.md](docs/成员分工与后续任务-20260913.md) | 四条工作线（合规 / 双线适配 / Variety+dsh / pgvector 智能化）任务分工 + 协作约定 | 已批准（Owner Directive 2026-09-14，批准记录见文档 §8）；§7 开放项继续跟踪 | 统一口径：允许试验 / 禁止伪装事实 / 保留创新 / 守住合规；dsh-bridle 冻结维持（ADR-0011）；pgvector=技术准备项非业务承诺；owner 拍板机制与 PR review 依据 | Owner Directive（2026-09-14） | evaluation_edge Schema v0 虚拟互评沙盘：36 条样例 + 9 红线校验器 + k-匿名共识聚合（零真实个人信息） | 验证通过 6/6；设计输入，非立项 |
 
 ## 关联代码仓库
 
