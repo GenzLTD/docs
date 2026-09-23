@@ -46,6 +46,7 @@
 | [Owner指令-szbolent.cn书店参考实现-20260918.md](Owner指令-szbolent.cn书店参考实现-20260918.md) | `szbolent.cn` = T2 书店参考实现；`www.szbolent.cn` = 橱窗只读精选；AI 只帮作者、不对访客聊天。企业手续完成前用此口径统一个人线，覆盖成员分工 §2「AI」表述与 Variety「门户 variant」自称 | Owner Directive（待本 PR merge 生效） |
 | [方案-个人知识库边缘车间-20260911.md](方案-个人知识库边缘车间-20260911.md) | Win 个人知识库车间：D 出料、C 热库、天翼只加工放行批次、E 只归档；关联 Nazha/DemoPeter/`genz-verify`；非 90 天产品、不复活 bridle | 方案（Proposed，§七已由 owner 拍板，Accept 范围见 PR #14 评论） |
 | [genz-ltd子域命名与归属表-20260914.md](genz-ltd子域命名与归属表-20260914.md) | genz.ltd 全量子域映射（api/circle/app/edge）+ 海外边侧生态 = `edge.genz.ltd` 命名决策；落地 ADR-0007 映射表 checklist | Proposed（edge 命名已拍板，DNS 待落地） |
+| [评审-szbolent-portal-PR2-作者橱窗目录-20260923.md](评审-szbolent-portal-PR2-作者橱窗目录-20260923.md) | 评审 `szbolent-portal#2`「将博客页改为作者橱窗目录，卡片外链回原文站」：与「书店-橱窗」Owner 指令逐条比对 + 5 项不一致（含外链域为本地演示域、上架真源自立、会替换线上 /blog）+ 7 项改造清单 + 2 项独立发现（门户 WP 数据源与源站不一致、`_bsb_shelf_featured` 未实现） | 评审意见（Review，2026-09-23）：**建议不合并**，由作者改造后重开分支 |
 
 ## 关联代码仓库
 
