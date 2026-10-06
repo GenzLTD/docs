@@ -38,7 +38,11 @@ jobs:
       - name: Build docs (strict)
         run: mkdocs build --strict
 
+  # 降级为手动触发（workflow_dispatch）。本 job 校验 evaluation_edge.schema.v0.json 的离线完备性，
+  # 属 ADR-0011 冻结口径下的静态归档样例校验，价值远低于 build（守护 AI 跨会话记忆源不腐坏）。
+  # 每次 PR 必跑属浪费 CI 分钟，故改为仅手动运行；如需重跑：Actions 页 → docs → Run workflow。
   sandbox-validation:
+    if: github.event_name == 'workflow_dispatch'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
