@@ -1,23 +1,17 @@
 # GenLTD 架构知识库
 
-> 团队架构设计的单一真源（single source of truth），供全体成员研讨、评审、追溯演进。
+> 单人决策日志与 AI 跨会话长期记忆源（single source of truth）。评审为记录性，CI（`mkdocs build --strict`）为唯一守门人；ADR 不可变、统一对账表、Owner 指令为保留资产。
 
-## 评审流程（Review Process）
+## 评审与维护口径（Record-first，CI 为守门人）
 
-任何 PR 合并前，**必须**取得以下 CODEOWNER 之一的 review approval：
+> **口径变更（2026-10-06）**：本仓实际为单人维护的决策日志（组织内仅一个真人在持续提交）。原 CODEOWNER 批准式评审在 Free plan + 私有仓下无法由 GitHub 强制，且历史 PR 过半零 review 直合，已事实失效。现改为**记录性**口径，CI 为唯一合入门禁。
 
-| 改动路径                 | 必审人（CODEOWNER）             | 兜底人                        |
-| ------------------------ | ------------------------------- | ----------------------------- |
-| `docs/adrs/`（ADR 文档） | `@szjason72` 或 `@xiajason`     | `@zervi-genz`、`@szpeter2026` |
-| `*.md`（其他文档）       | `@zervi-genz` 或 `@szpeter2026` | —                             |
-| `.github/`（治理配置）   | `@zervi-genz` 或 `@szpeter2026` | —                             |
-
-执行细则：
-
-1. 作者**不能**自己 approve 自己的 PR。
-2. 改动落在多个路径时，**每条**路径上的 CODEOWNER 都要 review。
-3. CODEOWNERS 配置见 [`.github/CODEOWNERS`](.github/CODEOWNERS)。
-4. **过渡说明** —— GenzLTD 当前为 Free plan，GitHub 不允许在私有仓强制 `require_code_owner_reviews`。升级到 Pro 或将本仓转 public 后，本节规则将由 GitHub 自动强制执行。在过渡期内，请每位 Maintainer **自觉遵守**上述评审流程；如发现未走评审的直推，请评论提醒或 revert。
+- **评审矩阵 = 记录性，非批准性**：记录「谁 / 何时 / 基于何据」做了什么决策与变更，不再要求成员互批、不再设合并门槛。
+- **唯一守门人 = CI**：`mkdocs build --strict` 通过（站点可构建、链接不断）方可合入；任何破坏 build 的改动不得合并。
+- **保留不可变资产**：ADR 不可变（Superseded 只链新 ADR、不改原文，见 `docs/adrs/README.md`）、统一对账表（季度复核，owner 裁定唯一事实源）、Owner 指令（merge 即生效，修订走新 PR 不静默改正文）。
+- **维护节奏**：月度批量回写一次，不追每条现网变化；避免文档滞后于现实反向误导 AI。
+- **每篇文档头部须带「最近核实现网日期」**；现网已变或超季度未核者标注 ⚠️ 过期。
+- 历史 CODEOWNER 表（见 `.github/CODEOWNERS`）保留为参考，但不再作为合并门槛。
 
 ## 文档索引
 
@@ -41,6 +35,8 @@
 | [成员分工与后续任务-20260913.md](docs/成员分工与后续任务-20260913.md) | 四条工作线（合规 / 双线适配 / Variety+dsh / pgvector 智能化）任务分工 + 协作约定 | 已批准（Owner Directive 2026-09-14，批准记录见文档 §8）；§7 开放项继续跟踪；§2 个人线「AI」表述已被 [Owner 指令 2026-09-18](docs/Owner指令-szbolent.cn书店参考实现-20260918.md) 覆盖 |
 | [Owner指令-szbolent.cn书店参考实现-20260918.md](docs/Owner指令-szbolent.cn书店参考实现-20260918.md) | `szbolent.cn` = T2 书店参考实现；`www.szbolent.cn` = 橱窗只读精选；AI 只帮作者 | Owner Directive（2026-09-18） |
 
+现网核对记录（2026-10-06 核定的 4 条脱节：放翁文库零记载 / www→apex 同源 / circle 违规未迁 / Stripe 护栏待核）见 [统一对账表-20260915](docs/统一对账表-20260915.md) §九。
+
 ## 关联代码仓库
 
 | 仓库                     | 定位                                         | 对应决策 |
@@ -55,5 +51,7 @@
 ## 演进约定
 
 - 本文库为**文档真源**，代码仓库的 docs/ 只放该组件自身的设计产物。
-- 架构决策变更走 PR + 评审，保留完整历史追溯。
+- 架构决策变更走 PR；评审为**记录性**（记录谁/何时/基于何据），不再要求 CODEOWNER 互批，合入门禁唯一为 CI（`mkdocs build --strict`）。
+- **每篇文档头部须带「最近核实现网日期」**；超季度未核或现网已变者标注 ⚠️ 过期，并在对应 ADR / 统一对账表回写。
+- 维护节奏：月度批量回写一次，不追每条现网变化。
 - 血缘关系、仓库索引的更新见 `CATALOG.md`。
