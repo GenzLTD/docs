@@ -33,7 +33,8 @@
 | [sandbox/evaluation-edge-virtual-sandbox-20260910](sandbox/evaluation-edge-virtual-sandbox-20260910/README.md) |
 | [治理口径-实验边界与执行规范-20260914.md](docs/治理口径-实验边界与执行规范-20260914.md) |
 | [成员分工与后续任务-20260913.md](docs/成员分工与后续任务-20260913.md) | 四条工作线（合规 / 双线适配 / Variety+dsh / pgvector 智能化）任务分工 + 协作约定 | 已批准（Owner Directive 2026-09-14，批准记录见文档 §8）；§7 开放项继续跟踪；§2 个人线「AI」表述已被 [Owner 指令 2026-09-18](docs/Owner指令-szbolent.cn书店参考实现-20260918.md) 覆盖 |
-| [Owner指令-szbolent.cn书店参考实现-20260918.md](docs/Owner指令-szbolent.cn书店参考实现-20260918.md) | `szbolent.cn` = T2 书店参考实现；`www.szbolent.cn` = 橱窗只读精选；AI 只帮作者 | Owner Directive（2026-09-18）⚠️ **现网已变**：apex 与 www 均=「放翁文库」，详见 [统一对账表 §九 #2](docs/统一对账表-20260915.md) |
+| [Owner指令-szbolent.cn书店参考实现-20260918.md](docs/Owner指令-szbolent.cn书店参考实现-20260918.md) | `szbolent.cn` = T2 书店参考实现；`www.szbolent.cn` = 放翁文库（诗词门户，与 apex 同源）；AI 只帮作者 | Owner Directive（2026-09-18）✅ 诗词门户已解冻（2026-10-06），详见 [Owner指令-现网定位解冻-20261006](docs/Owner指令-现网定位解冻-20261006.md) |
+| [Owner指令-现网定位解冻-20261006.md](docs/Owner指令-现网定位解冻-20261006.md) | 诗词门户解冻（放翁文库=现网诗词门户，进 Variety+个人博客联调）；circle 仅海外域；Stripe 仅海外版 | Owner Directive（2026-10-06） |
 
 现网核对记录（2026-10-06 核定的 4 条脱节：放翁文库零记载 / www→apex 同源 / circle 违规未迁 / Stripe 护栏待核）见 [统一对账表-20260915](docs/统一对账表-20260915.md) §九。
 
