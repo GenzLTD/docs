@@ -1,6 +1,8 @@
 # ADR 0012: THOMAS 生态身份统一 —— Supabase 唯一 IdP、稳定主键注入、网关唯一验签点
 
-- **Status**: Proposed（待 owner 签署；**签署即生效，口径冻结**）
+- **Status**: **Accepted**（2026-10-10 由组织 owner 签署生效；**口径冻结**）
+- **Signed-off-by**: `szpeter2026`（GenzLTD owner / admin，2026-10-10）
+- **Co-sign**: `szjason72`（会签待补 —— 按 `adrs/README.md` 规则，组织 Admin **单人 Accept 即生效**，不阻塞）
 - **Date**: 2026-10-10
 - **Deciders**: `szpeter2026`（GenzLTD owner / admin，本 ADR 发起）
 - **Consulted**: `szjason72`（`Tatha#5` CHANGES_REQUESTED 提出方，2026-10-09）· `looma-zervi/docs/rfc/supabase-unified-auth-v1.md`（2026-09-01，Jason 著）· `zervi-rust/api-gateway/src/tatha.rs` 源码 · `Tatha/src/tatha/api/auth.py` 源码 · `looma-zervi/backend/src/db/manager.py` 源码
@@ -160,7 +162,7 @@
 
 ## Implementation checklist
 
-- [ ] **Accept 本 ADR**（组织 owner `szpeter2026` 签署；`szjason72` 会签）
+- [x] **Accept 本 ADR** —— `szpeter2026` 于 2026-10-10 签署生效（`szjason72` 会签待补，不阻塞）
 - [ ] 更新 `docs/adrs/README.md` 索引与 `mkdocs.yml` 导航（本 PR 已含）
 - [ ] 单 1（`zervi-rust`）：`GATEWAY_JWKS_URL` + `verify_bearer` 双轨 + JWKS 缓存 + `X-User-Id`/`X-User-Email-Hash` 双头注入
 - [ ] 单 2（`Tatha` / `planetx-tatha`）：改读注入头；`verify_token` 去 stub 回落；修 `.env.example` 旧口径与 PR 正文（F1）

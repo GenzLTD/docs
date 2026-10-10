@@ -2,7 +2,7 @@
 
 > **本文为 [ADR-0012](../adrs/0012-thomas-identity-unification.md) 的实现层附件（施工单）** —— 裁决口径以 ADR-0012 为准，本文只讲"怎么落地"，不重议口径。
 > 状态：**口径已裁定** —— 本单为实现层施工单，**不再重议口径**
-> 裁决源：`GenzLTD/docs` → [ADR-0012《THOMAS 生态身份统一》](../adrs/0012-thomas-identity-unification.md)（Status: Proposed，待 owner 签署即冻结）
+> 裁决源：`GenzLTD/docs` → [ADR-0012《THOMAS 生态身份统一》](../adrs/0012-thomas-identity-unification.md)（Status: **Accepted**，2026-10-10 签署生效，口径冻结）
 > 目标：实现**跨域、跨系统身份认证统一** —— Supabase Auth 为唯一 IdP，`supabase_uid` 为唯一稳定主键，网关为唯一验签点，下游只信任网关注入头。
 > 适用范围：`zervi-rust`（网关）· `Tatha` / `planetx-tatha` · `looma-zervi` · 微信小程序 / Web / H5 前端
 > 依据：`looma-zervi/docs/rfc/supabase-unified-auth-v1.md`（D1–D6）· `zervi-rust/api-gateway/src/tatha.rs` · `Tatha/src/tatha/api/auth.py` · `looma-zervi/backend/src/db/manager.py` · 实测源码
