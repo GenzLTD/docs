@@ -1,3 +1,5 @@
+> 📌 **框架说明（2026-10-11）**：本 ADR 的「回到 Career Cosmos 90 天」时间框架已随融资 / 创赛导向放弃而失效；§Decision 的 dsh-bridle 冻结、docs 单真源、门控≠记忆 等治理决定**仍然有效**，作为产品治理准则保留。
+
 # ADR 0011: 冻结 dsh-bridle 产品化争论，注意力回到 Career Cosmos 90 天
 
 - **Status**: Accepted
