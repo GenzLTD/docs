@@ -44,8 +44,10 @@ nav:
   - ADR 0010: adrs/0010-cn-wechat-pay-three-client-ops.md
   - ADR 0011: adrs/0011-dsh-bridle-freeze-career-cosmos.md
   - ADR 0012: adrs/0012-thomas-identity-unification.md
+  - ADR 0013: adrs/0013-cross-system-isolation-boundary.md
   - 施工单 0012 身份统一: impl/0012-identity-unification-workorder.md
   - 治理清单: adrs/free-plan-governance-notes.md
+  - 隔离边界清单: adrs/isolation-boundary-notes.md
   - 执行计划: ADR001-004落地执行计划.md
   - Career Cosmos 90 天: 聚焦决策-Career-Cosmos-90天.md
   - Career Cosmos 90 天调研建议: 聚焦决策-Career-Cosmos-90天-调研建议.md
