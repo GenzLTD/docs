@@ -1,5 +1,7 @@
 # GenLTD 架构知识库
 
+> ⚠️ **治理口径对齐（2026-10-11）**：本文件下方的「评审流程（Review Process）」写于更早的 CODEOWNER 强制期。**当前治理以仓库根目录 `README.md`（2026-10-06 修订）与 `AGENTS.md` 为准**：Free plan + 私有仓下 GitHub 无法强制 `require_code_owner_reviews`，CODEOWNER 批准式评审已**事实失效**；现改为**记录性口径**，**CI（`mkdocs build --strict`）为唯一合入门禁**。本节 CODEOWNER 表仅作「建议评审人」参考，不再作为合并门槛。
+
 > 团队架构设计的单一真源（single source of truth），供全体成员研讨、评审、追溯演进。
 
 ## 评审流程（Review Process）

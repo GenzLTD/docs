@@ -35,6 +35,7 @@ GenzLTD 架构决策记录。格式参考 [Michael Nygard ADR](https://cognitect
 - **M3 记忆合规**：以 ADR 0003 + cortex `compliance.py` 为准
 - **近期承诺范围**：以 ADR 0009（Accepted）为准——信任层，而非世界模型大脑
 - **90 天变现 / 可运营（Proposed）**：ADR 0010 提议把 Career Cosmos 第 4 条读成国内微信支付 + 三端可运营；**Accept 前仍以聚焦决策原文为准**。Stripe 沙盒不是深创赛交付
+  - ⚠️ 注（2026-10-11）：《聚焦决策-Career-Cosmos-90天.md》已于 PR #42 关闭（融资 / 创赛导向放弃），上述「聚焦决策原文」引用转为历史背景；ADR 0010 技术目标仍可独立作为产品打磨推进。
 - **dsh-bridle / 内部 RAG 插件**：以 ADR 0011（Accepted）为准——冻结产品化；本机工作记忆探针（门控 pin SHA + 落地点名）；裸 hybrid 不当证据；记忆写入仍走 cortex（ADR-0003），不复活 ADR-0009 的 Agent loop 承诺
 - **身份认证统一**：以 ADR 0012（**Accepted**，2026-10-10 签署生效）为准——Supabase 为唯一 IdP；网关唯一验签点（JWKS/ES256 + HS256 双轨）；`X-User-Id` 用稳定主键 `sha256(supabase_uid)`；跨端关联键 `email_hash` 无真实邮箱时为 `None`（**不造假值**）；口径争议走该 ADR 的 Amendment，不在实现 PR 辩论
 - **Evidence**：`lab-genz-brain-m2` 测试、`genz-gate` CI 日志；支付以 `looma-zervi` `origin/main` 为准，未入库工作区不作 ADR 证据
