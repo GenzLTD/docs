@@ -1,6 +1,6 @@
 # ADR 0013: 跨系统隔离边界 —— 身份统一的对偶命题、隔离等级（L0–L4）与边界矩阵
 
-- **Status**: Proposed
+- **Status**: **Accepted**（2026-10-16 由组织 owner Accept；Admin 单人 Accept 即生效）
 - **Date**: 2026-10-11
 - **Deciders**: 组织 Admin（`szpeter2026` / `zervi-genz` / `szjason72`）Accept；Member 可提 Proposed（按 `adrs/README.md` 规则，Admin **单人 Accept 即生效**）
 - **Drafted-by**: `szjason72`（ADR 起草主线，见 `.github/CODEOWNERS`：`/docs/adrs/` → `@szjason72 @xiajason`）
