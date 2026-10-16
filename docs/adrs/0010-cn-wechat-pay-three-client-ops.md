@@ -1,10 +1,31 @@
 > 📌 **框架说明（2026-10-11）**：本 ADR 引用的《聚焦决策-Career Cosmos 90 天》已于 2026-10-11 关闭（融资 / 创赛导向放弃，见 PR #42），其「已决策」表述转为历史背景。本 ADR 的「国内 Looma 微信支付 + 三端可运营」技术目标仍有效（属产品打磨），但不再以「服务融资」为理由；ADR-0010 仍为 Proposed。
 
+> ⚖️ **Owner 裁定（2026-10-16，`szpeter2026`）—— 不 Accept、不弃用，改为「门禁化」**
+>
+> 本 ADR 自 2026-09-07 起草起已悬置 5 周。其自身正文（Owner 产品化评审）写明的口径是：**在统一身份 / 订单 / 支付 / 权益底座和首轮交易验证前，本 ADR 保持 Proposed**。据此：
+>
+> - **现在 Accept 是错的**：会直接违背该 ADR 自己设的门禁，并触发它在 Risks 里预告的误读 ——「ADR 已合进 docs」≠「微信已能收款」。
+> - **弃用也是错的**：会一并丢掉仍然有效的约束 —— Decision 2（收银真源只有 Looma，Tatha / tatha-frontend / ErphpDown 不得再当主收银）、Decision 6（本季度明确不做项）。
+> - 故裁定：**Status 维持 `Proposed`，但把「悬置」改为「带门禁」**。本 ADR 的 Proposed 是**有到期日的 Proposed**，不是默认保留。
+>
+> **Accept 门禁（须全部满足）**
+>
+> 1. 统一身份 / 订单 / 回调 / 权益底座就位（ADR-0012 单 1 部署上线 + 单 2 完成）
+> 2. 内地微信商户凭证齐备，公网 `WECHAT_NOTIFY_URL` 指向 `POST /v1/payment/wechat/notify`
+> 3. **至少一轮国内真实（或商户沙箱）交易在权威 commit 上完成**，`GET /v1/payment/status` 返回升档后的 `tier`
+> 4. 三端各一条可重复升档演示步骤已写入 **`looma-zervi`** 验收文档（不得写进本 ADR 当已完成）
+> 5. `looma-zervi` 侧修正 `PAYMENT_TIER_CONTRACT.md` / `TENCENT_CLOUD_COMMERCE.md` 中与代码真源不一致的回调路径
+>
+> **复核触发点（防止再次无限悬置）**
+>
+> - 门禁 1–2 满足后 **30 日内**复核一次；届时若门禁 3 仍无证据，本 ADR **转为 Superseded 或撤回**（残留约束由新 ADR 承接），不再维持 Proposed。
+> - 若门禁 1–2 长期不满足，则每季度在本 ADR 追加一行状态说明，保持「悬置」是**记录在案的判断**，而不是无人认领的默认值。
+
 # ADR 0010: 90 天技术欠债收敛为「国内 Looma 微信支付 + 三端可运营」
 
-- **Status**: Proposed
+- **Status**: Proposed（**门禁化** —— 见文首 2026-10-16 Owner 裁定块）
 - **Date**: 2026-09-07
-- **Deciders**: 待 `szpeter2026` / `zervi-genz` Accept（**本 PR 不请求 Accept**）
+- **Deciders**: `szpeter2026` / `zervi-genz`（**本 PR 不请求 Accept**；Accept 门禁见文首裁定块）
 - **Consulted**: szjason72（起草）、xiajason（PR #10 Request changes）、zervi-genz（Owner 产品化评审，已入 main）
 - **Tags**: strategy, career-cosmos, payment, wechat-pay, looma-zervi, fundraising
 
@@ -82,6 +103,8 @@ Owner 已在 main 写明：三端支付是统一现金流管道和商业期权�
 - [x] 锁定权威基线为 `looma-zervi` `origin/main` `08f38fc`
 - [x] 三端人工步骤列为采纳后交付，不列为当前已验证
 - [ ] CODEOWNER 重新 review（xiajason / owner）
+
+> **2026-10-16 裁定**：owner review 已完成 —— 见文首裁定块。维持 `Proposed` 并门禁化；Accept 门禁 1–5 为硬条件，复核触发点已写明。
 
 **Accept 仍由 owner 决定；下列为采纳后 / 阻塞交易验证的配合项（见配套文）**
 
