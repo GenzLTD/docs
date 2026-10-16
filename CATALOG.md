@@ -91,13 +91,13 @@
 | 仓库 | 定位 | 技术栈 | 文件 | 组织 | 关系 |
 |---|---|---|---|---|---|
 | Tatha | AI 求职匹配 + 社区治理（FastAPI 后端） | python | 74 | GenzLTD | 后端 |
-| tatha-frontend | Tatha 前端（静态） | — | 6 | GenzLTD | Tatha 前端 |
+| tatha-frontend | ~~Tatha 前端（静态）~~ **已归档 2026-10-16**（产品面由 looma-zervi · frontend/packages/planetx → app.genz.ltd 取代；营销/定价/法务归 genz-web） | — | 15 | GenzLTD | **已归档（只读）** |
 
 ### 5.4 前端 / 门户线
 
 | 仓库 | 定位 | 技术栈 | 文件 | 组织 | 关系 |
 |---|---|---|---|---|---|
-| genz-web | genz.ltd Stripe 审核站（PlanetX 产品，release/overseas 分支） | Vite + React | 28 | szpeter2026 | PlanetX 海外官网 |
+| genz-web | genz.ltd 营销 / 定价 / 收银 / 法务站（PlanetX 产品，分支 main；定价 fetch 后端 `/v1/payment/plans` 契约） | Vite + React | 28 | GenzLTD | PlanetX 海外官网 |
 | szbolent-portal | www.szbolent.cn 智能化诗词门户 | Vue3 SPA | 111 | szpeter2026 | 诗词门户主线 |
 | szbolent-frontend | Vue3 + Vite 模板（README 仍为脚手架默认） | Vue3 | 63 | GenzLTD | portal 前身/模板 |
 | poetries-of-bolent | Bolent 诗词战略 / 溯源文档仓（无业务代码） | — | 4 | GenzLTD | 战略文档 |
