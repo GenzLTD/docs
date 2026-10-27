@@ -31,6 +31,7 @@ plugins:
 nav:
   - Home: README.md
   - 访问与参与指南: 访问与参与指南.md
+  - Genz 产品设计与跨仓结构 2026-10-27: Genz-产品设计与跨仓结构-20261027.md
   - ADR Index: adrs/README.md
   - ADR 0001: adrs/0001-lab-wukong-canonical.md
   - ADR 0002: adrs/0002-l0-pii-sg-deny-policy.md
